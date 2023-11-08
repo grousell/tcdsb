@@ -4,6 +4,8 @@
 # tcdsb
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/grousell/tcdsb/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/grousell/tcdsb/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of tcdsb is to …
