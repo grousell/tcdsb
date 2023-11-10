@@ -11,17 +11,14 @@
 #' # tcdsb_colours_fonts()
 
 tcdsb_colours_fonts <- function(...){
-  tcdsbGreen <<- "#8dc63f"
-  tcdsbGreen2 <<- "#afd778"
-  tcdsbGreen3 <<- "#d1e8b2"
 
-  tcdsbBlue <<- "#0089cf"
-  tcdsbBlue2 <<- "#4cacdd"
-  tcdsbBlue3 <<- "#99cfeb"
+  tcdsb_board_color <<- "#951B1E"
+  tcdsb_board_color_20 <<- "#C84E51"
+  tcdsb_board_color_40 <<- "#FB8184"
 
-  tcdsbOrange <<- "#faa61a"
-  tcdsbOrange2 <<- "#fbc05e"
-  tcdsbOrange3 <<- "#fddba3"
+  tcdsb_palette <<- c("#560F11", "#2D0026", "#BA7D6B", "#FFE3A6", "#8EB8C2",
+                      "#6BCAD4", "#016567", "#7DA387", "#8ACA88", "#9D976E")
+  province_green <<- "#39B54A"
 
   tcdsbFont <<- "Arial"
 
