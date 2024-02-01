@@ -40,7 +40,7 @@ a column separator -->
 :::
 
 ::: {.col data-latex="{0.35\\textwidth}"}
-![](images/tcdsb_logo_BW){width="190"}
+![](images/tcdsb_logo_BW.png){width="190"}
 
 :::
 :::

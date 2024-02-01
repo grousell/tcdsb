@@ -41,7 +41,7 @@ tcdsb_report_template_pdf <- function(report_name){
                 mode = "wb")
 
   download.file("https://github.com/grousell/tcdsb/blob/master/images/title_page_background.png",
-                destfile = "images/tcdsb_logo_BW.png",
+                destfile = "images/title_page_background.png",
                 mode = "wb")
 
 }
