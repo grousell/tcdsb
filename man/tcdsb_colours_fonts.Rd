@@ -7,7 +7,7 @@
 tcdsb_colours_fonts(...)
 }
 \arguments{
-\item{...}{}
+\item{...}{Leave blank.}
 }
 \value{
 R objects with names and HEX colors for TCDSB visual identity

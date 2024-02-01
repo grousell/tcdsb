@@ -1,7 +1,7 @@
 #' Report Template - PDF
 #' A function that downloads an .Rmd template, images and .tex files for a TCDSB themed report template.
 #' @param report_name
-#'
+#' Name of the report to be created.
 #' @return Templates and images for a TCDSB themed report
 #' @export
 #'

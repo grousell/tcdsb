@@ -2,7 +2,7 @@
 #' TCDSB Colors and Fonts
 #'
 #' @param ...
-#'
+#' Leave blank.
 #' @return
 #' R objects with names and HEX colors for TCDSB visual identity
 #' @export
