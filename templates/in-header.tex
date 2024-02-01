@@ -1,0 +1,67 @@
+% \usepackage[framemethod=TikZ]{mdframed}
+\usepackage{fancyhdr} % package for fancy headers
+\usepackage{color} % allows me to save colors
+\usepackage{xcolor} % Apply colors to fonts
+\usepackage{anysize} %% For use with marginsize
+\usepackage{wallpaper} %% For ULCornerWallPaper - headers and footers
+\usepackage{fontspec}
+\usepackage{fancyhdr}
+\usepackage{hyphenat}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{pdflscape}
+
+% Set Watermark
+% Comment out when finalised, or change DRAFT to CONFIDENTIAL
+\usepackage{draftwatermark}
+\SetWatermarkText{%
+  \ifnum\value{page}=1\relax% Nothing on page 1;
+  \else DRAFT \fi}
+
+
+% Custom Colors
+\definecolor {tcdsb_maroon}{cmyk}{.26, 1, 1, 0.26}
+\definecolor {tcdsb_teal}{cmyk}{.45, .15, .20, 0}
+% Set Font for Headers
+
+\titleformat{\section}{\color{tcdsb_maroon}\fontsize{16}{5}\selectfont\bfseries\raggedright}{\thesection}{1em}{}
+\titleformat{\subsection}{\color{tcdsb_maroon}\fontsize{14}{5}\selectfont\bfseries\raggedright}{\thesection}{1em}{}
+\titleformat{\subsubsection}{\color{tcdsb_teal}\fontsize{12}{5}\selectfont\bfseries\raggedright}{\thesection}{1em}{}
+
+% Set Main Font
+\setmainfont[Ligatures=TeX]{Arial}
+\setlength{\headheight}{15pt}
+\marginsize{1.5cm}{1.5cm}{1cm}{2cm} %%Left, Right, Top,BOttom
+\hyphenpenalty=10000
+
+% Style Pages
+\pagestyle{fancy}
+
+\lhead{} %makes right header %requires pagestyle{fancy}
+\rfoot{Page \thepage}
+\cfoot {\includegraphics[height=1.8cm]{images/r_a_footer.png}}
+
+\setlength{\footskip}{60pt}
+
+\newenvironment{cols}[1][]{}{}
+
+\newenvironment{col}[1]{\begin{minipage}{#1}\ignorespaces}{%
+\end{minipage}
+\ifhmode\unskip\fi
+\aftergroup\useignorespacesandallpars}
+
+\def\useignorespacesandallpars#1\ignorespaces\fi{%
+#1\fi\ignorespacesandallpars}
+
+\makeatletter
+\def\ignorespacesandallpars{%
+  \@ifnextchar\par
+    {\expandafter\ignorespacesandallpars\@gobble}%
+    {}%
+}
+\makeatother
+
+\AtBeginDocument{\let\maketitle\relax}
+
+
+
