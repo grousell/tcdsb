@@ -45,5 +45,5 @@ tcdsb_report_template_pdf <- function(report_name){
                 mode = "wb")
 
 }
-## Extra line -----
+## Extra line
 
