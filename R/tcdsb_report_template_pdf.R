@@ -2,7 +2,7 @@
 #' A function that downloads an .Rmd template, images and .tex files for a TCDSB themed report template.
 #' @param report_name
 #'
-#' @return
+#' @return Templates and images for a TCDSB themed report
 #' @export
 #'
 #' @examples

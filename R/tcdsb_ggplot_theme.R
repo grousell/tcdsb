@@ -7,10 +7,14 @@
 #' @export
 #'
 #' @examples
+#' # df |>
+#' #   ggplot(aes (x = x, y = y)) +
+#' #   geom_bar() +
+#' #   tcdsb_ggplot_theme()
 
 tcdsb_ggplot_theme <- function(text_scale = 1) {
 
-  chart_font <- "Garamond"
+  chart_font <- "Arial"
 
   ggplot2::theme(
     title = ggplot2::element_text(colour = "black", size = (14 * text_scale)),
