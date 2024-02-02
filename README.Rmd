@@ -9,7 +9,9 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
-  out.width = "100%"
+  out.width = "100%",
+  echo=FALSE, 
+  message=FALSE
 )
 ```
 
@@ -32,10 +34,62 @@ devtools::install_github("grousell/tcdsb")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+Here is a basic plot:
 
-```{r example}
+```{r basic_plot, echo=TRUE}
+library(tidyverse)
 library(tcdsb)
-## basic example code
+
+mtcars |> 
+  head() |> 
+  rownames_to_column("car") |> 
+  ggplot(aes(x = car, y = disp)) +
+  geom_col() + 
+  labs(title = "Title of Plot", 
+       subtitle = "Subtitle", 
+       x = NULL, 
+       y = "Displacement") 
+
 ```
 
+The `tcdsb_colours_fonts` function loads the appropriate fonts and HEX colours. 
+```{r colours_fonts, echo=TRUE}
+tcdsb_colours_fonts()
+```
+
+![](images/tcdsb_colour_font_pic.png)
+
+
+By adding `tcdsb_ggplot_theme` at the end of the code to build the plot, a consistent theme is applied.
+
+```{r themed_plot,echo=TRUE}
+
+mtcars |> 
+  head() |> 
+  rownames_to_column("car") |> 
+  ggplot(aes(x = car, y = disp)) +
+  geom_col() + 
+  labs(title = "Title of Plot", 
+       subtitle = "Subtitle", 
+       x = NULL, 
+       y = "Displacement") + 
+  tcdsb::tcdsb_ggplot_theme()
+
+```
+
+Custom colours can be added to the chart using `tcdsb_board_color`. 
+
+```{r themed_plot2,echo=TRUE}
+
+mtcars |> 
+  head() |> 
+  rownames_to_column("car") |> 
+  ggplot(aes(x = car, y = disp)) +
+  geom_col(fill = tcdsb_board_color) + 
+  labs(title = "Title of Plot", 
+       subtitle = "Subtitle", 
+       x = NULL, 
+       y = "Displacement") + 
+  tcdsb::tcdsb_ggplot_theme()
+
+```
