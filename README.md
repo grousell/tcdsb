@@ -31,7 +31,7 @@ library(tidyverse)
 library(tcdsb)
 
 mtcars |> 
-  head() |> 
+  head(3) |> 
   rownames_to_column("car") |> 
   ggplot(aes(x = car, y = disp)) +
   geom_col() + 
@@ -58,7 +58,7 @@ a consistent theme is applied.
 ``` r
 
 mtcars |> 
-  head() |> 
+  head(3) |> 
   rownames_to_column("car") |> 
   ggplot(aes(x = car, y = disp)) +
   geom_col() + 
@@ -76,7 +76,7 @@ Custom colours can be added to the chart using `tcdsb_board_color`.
 ``` r
 
 mtcars |> 
-  head() |> 
+  head(3) |> 
   rownames_to_column("car") |> 
   ggplot(aes(x = car, y = disp)) +
   geom_col(fill = tcdsb_board_color) + 
