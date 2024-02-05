@@ -3,6 +3,7 @@ title: "[Title]"
 subtitle: "[Subtitle]"
 date: "[DATE]"
 author: "[Author]"
+report: "[Research/Analytics Report]"
 output:
   pdf_document:
     latex_engine: "xelatex"
@@ -31,7 +32,7 @@ options(scipen = 999)
 
 # `r rmarkdown::metadata$title`
 <!-- ## `r rmarkdown::metadata$subtitle` -->
-## Research Report
+## `r rmarkdown::metadata$report`
 :::
 
 ::: {.col data-latex="{0.05\\textwidth}"}
