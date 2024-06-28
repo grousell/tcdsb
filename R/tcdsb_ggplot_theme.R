@@ -14,7 +14,7 @@
 
 tcdsb_ggplot_theme <- function(text_scale = 1) {
 
-  chart_font <- "Arial"
+  chart_font <- "sans"
 
   ggplot2::theme(
     title = ggplot2::element_text(colour = "black", size = (14 * text_scale)),
