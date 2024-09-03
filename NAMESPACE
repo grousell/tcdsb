@@ -3,3 +3,4 @@
 export(tcdsb_colours_fonts)
 export(tcdsb_ggplot_theme)
 export(tcdsb_report_template_pdf)
+export(tcdsb_retrieve_alchemer)
