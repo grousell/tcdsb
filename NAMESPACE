@@ -2,6 +2,7 @@
 
 export(tcdsb_colours_fonts)
 export(tcdsb_fetch_alchemer_data)
+export(tcdsb_fetch_alchemer_data_dictionary)
 export(tcdsb_ggplot_theme)
 export(tcdsb_report_template_pdf)
 export(tcdsb_retrieve_alchemer)

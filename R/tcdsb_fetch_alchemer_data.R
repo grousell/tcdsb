@@ -1,4 +1,4 @@
-#' TCDSB Fetchs Alchemer Survey Data
+#' TCDSB Fetch Alchemer Survey Data
 #' A function that retrieves data from TCDSB's Alchemer account.
 #' Requires user to have set up an API with Alchemer, including
 #' a token and secret key
@@ -12,7 +12,7 @@
 #' @examples
 #' # token <- keyring::key_get("alchemer", "token")
 #' # secret_key <- keyring::key_get("alchemer", "secret")
-#' # get_alchemer_data("XXXXXXXX")
+#' # tcdsb_fetch_alchemer_data("XXXXXXXX")
 
 tcdsb_fetch_alchemer_data <- function(survey_number){
 
