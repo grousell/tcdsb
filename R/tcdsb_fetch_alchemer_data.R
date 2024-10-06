@@ -36,7 +36,7 @@ tcdsb_fetch_alchemer_data <- function(survey_number){
     } else {
       temp_df <- temp_survey_df$data |>
         dplyr::select(
-          c(1, 3, 5, 8, 14),
+          c(1, 3:5, 8, 14),
           tidyr::ends_with("answer")
         )
     }
@@ -54,3 +54,5 @@ tcdsb_fetch_alchemer_data <- function(survey_number){
 
   return(new_df)
 }
+
+
