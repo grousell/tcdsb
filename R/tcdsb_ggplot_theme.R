@@ -61,7 +61,7 @@ tcdsb_ggplot_theme <- function(text_scale = 1) {
     legend.title = ggplot2::element_blank(),
     legend.key = ggplot2::element_blank(),
 
-    strip.background = element_rect(fill = "white", color = NA)
+    strip.background = ggplot2::element_rect(fill = "white", color = NA)
   )
   }
 
