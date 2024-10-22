@@ -16,7 +16,7 @@
 
 tcdsb_fetch_alchemer_data_dictionary <- function(survey_number){
 
-  survey_url <- glue::glue("https://api.alchemer-ca.com/v5/survey/{survey_number}/surveyresponse")
+  survey_url <- glue::glue("https://api.alchemer-ca.com/v5/survey/{survey_number}/surveyquestion")
   survey_req <- httr2::request(survey_url)
 
   survey <- survey_req |>
@@ -28,18 +28,14 @@ tcdsb_fetch_alchemer_data_dictionary <- function(survey_number){
     )
 
   temp_df <- jsonlite::fromJSON(survey$url, flatten = TRUE)
+  temp_df <- temp_df$data
 
-  temp_df$data |>
-    head(1) |>
-    select(1,
-           tidyr::ends_with("question")
-    ) |>
-    tidyr::pivot_longer(cols = !id,
-                        names_to = "q_number",
-                        values_to = "question") |>
-    dplyr::select(-id) |>
-    dplyr::mutate(
-      q_number = stringr::str_replace_all(q_number, "survey_data.", "Q"),
-      q_number = stringr::str_replace_all(q_number, ".question", "")
-    )
+  temp_df |>
+    dplyr::select(id,
+                  "label" = title.English,
+                  options) |>
+    tidyr::unnest(options,
+                  names_sep = "_") |>
+    dplyr::select(id, label, options_id, options_value)
+
 }
