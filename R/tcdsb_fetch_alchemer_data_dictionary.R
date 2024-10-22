@@ -35,7 +35,8 @@ tcdsb_fetch_alchemer_data_dictionary <- function(survey_number){
                   "label" = title.English,
                   options) |>
     tidyr::unnest(options,
-                  names_sep = "_") |>
+                  names_sep = "_",
+                  keep_empty = TRUE) |>
     dplyr::select(id, label, options_id, options_value)
 
 }
