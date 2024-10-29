@@ -37,6 +37,11 @@ tcdsb_fetch_alchemer_data_dictionary <- function(survey_number){
     tidyr::unnest(options,
                   names_sep = "_",
                   keep_empty = TRUE) |>
-    dplyr::select(id, label, options_id, options_value)
+    dplyr::select(
+      "question_id" = id,
+      label,
+      options_id,
+      options_value) |>
+    dplyr::mutate(question_id = glue::glue("Q{question_id}"))
 
 }
