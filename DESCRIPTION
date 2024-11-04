@@ -18,4 +18,5 @@ Imports:
     jsonlite,
     stringr,
     tidyr,
-    utils
+    utils,
+    usethis

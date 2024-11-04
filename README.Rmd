@@ -32,7 +32,7 @@ You can install the development version of tcdsb from [GitHub](https://github.co
 devtools::install_github("grousell/tcdsb")
 ```
 
-## Example
+## Plot Example
 
 Here is a basic plot:
 
@@ -93,3 +93,12 @@ mtcars |>
   tcdsb::tcdsb_ggplot_theme()
 
 ```
+
+## Project Setup Example
+
+```{r project_setup,echo=TRUE}
+
+# tcdsb::tcdsb_project_setup()
+
+```
+ Creates a README file and folders for reference documents, R scripts, assets (i.e. image files), raw and clean data. 

@@ -22,12 +22,18 @@ You can install the development version of tcdsb from
 devtools::install_github("grousell/tcdsb")
 ```
 
-## Example
+## Plot Example
 
 Here is a basic plot:
 
 ``` r
 library(tidyverse)
+#> Warning: package 'tidyverse' was built under R version 4.3.3
+#> Warning: package 'ggplot2' was built under R version 4.3.3
+#> Warning: package 'tidyr' was built under R version 4.3.3
+#> Warning: package 'dplyr' was built under R version 4.3.3
+#> Warning: package 'stringr' was built under R version 4.3.3
+#> Warning: package 'lubridate' was built under R version 4.3.3
 library(tcdsb)
 
 mtcars |> 
@@ -88,3 +94,13 @@ mtcars |>
 ```
 
 <img src="man/figures/README-themed_plot2-1.png" width="100%" />
+
+## Project Setup Example
+
+``` r
+
+# tcdsb::tcdsb_project_setup()
+```
+
+Creates a README file and folders for reference documents, R scripts,
+assets (i.e. image files), raw and clean data.
