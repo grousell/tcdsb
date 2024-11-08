@@ -39,4 +39,9 @@ tcdsb_project_setup <- function(){
   } else{
     dir.create("assets")
   }
+
+  if(file.exists("output")){
+  } else{
+    dir.create("output")
+  }
 }
