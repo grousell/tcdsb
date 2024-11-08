@@ -29,5 +29,5 @@ officer::read_docx("templates/tcdsb_word_cover_page_template.docx") |>
     old_value = "AUTH2",
     new_value = author2
   ) |>
-  print(target = "title_page.docx")
+  print(target = "assets/title_page.docx")
 

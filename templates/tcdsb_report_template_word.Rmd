@@ -1,0 +1,27 @@
+---
+output: 
+  officedown::rdocx_document:
+    reference_docx: assets/tcdsb_word_template.docx
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(officer)
+```
+
+```{r, echo=FALSE}
+# Insert title page
+block_pour_docx("assets/title_page.docx")
+
+```
+
+\newpage
+
+Page 1
+
+\newpage
+
+Page 2
+
+
+
