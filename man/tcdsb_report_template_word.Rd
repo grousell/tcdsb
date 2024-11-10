@@ -17,3 +17,6 @@ Templates and scripts to create the report
 Report Template - Word
 A function that downloads an .Rmd template, .R script and Word templates for a TCDSB themed report template.
 }
+\examples{
+#tcdsb_report_template_word("test_report")
+}

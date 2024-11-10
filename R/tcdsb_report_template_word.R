@@ -8,6 +8,7 @@
 #' @export
 #'
 #' @examples
+#' #tcdsb_report_template_word("test_report")
 
 tcdsb_report_template_word <- function(report_name){
   if(file.exists("assets")){
