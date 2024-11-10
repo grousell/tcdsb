@@ -11,6 +11,8 @@
 #' #tcdsb_report_template_word("test_report")
 
 tcdsb_report_template_word <- function(report_name){
+  report_name <- deparse(substitute(report_name)) #makes names a character string
+
   if(file.exists("assets")){
   } else{
     dir.create("assets")
