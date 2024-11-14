@@ -25,7 +25,7 @@ options(scipen = 999)
 
 ```
 
-\ThisCenterWallPaper{0.75}{images/title_page_background.png}
+\ThisCenterWallPaper{0.75}{assets/title_page_background.png}
 
 ::: {.cols data-latex=""} 
 ::: {.col data-latex="{0.6\\textwidth}"}
@@ -41,7 +41,7 @@ a column separator -->
 :::
 
 ::: {.col data-latex="{0.35\\textwidth}"}
-![](images/tcdsb_logo_BW.png){width="190"}
+![](assets/tcdsb_logo_BW.png){width="190"}
 
 :::
 :::

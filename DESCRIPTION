@@ -14,10 +14,8 @@ Imports:
     ggplot2,
     glue,
     httr2,
-    janitor,
     jsonlite,
     stringr,
     tidyr,
     utils,
-    usethis,
-    janitor
+    usethis
