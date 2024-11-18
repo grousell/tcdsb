@@ -24,7 +24,7 @@ tcdsb_report_template_word <- function(report_name){
   }
 
   # Download .R file to create the title page ----
-  download.file("https://github.com/grousell/tcdsb/blob/master/templates/01_create_word_coverpage.R",
+  download.file("https://raw.githubusercontent.com/grousell/tcdsb/refs/heads/master/templates/01_create_word_coverpage.R",
                 destfile = "R/01_create_word_coverpage.R"
   )
 
@@ -39,7 +39,7 @@ tcdsb_report_template_word <- function(report_name){
   )
 
   # Download .rmd ----
-  download.file("https://github.com/grousell/tcdsb/blob/master/templates/tcdsb_report_template_word.Rmd",
+  download.file("https://raw.githubusercontent.com/grousell/tcdsb/refs/heads/master/templates/tcdsb_report_template_word.Rmd",
                 destfile = glue::glue("{report_name}.rmd")
   )
 }
