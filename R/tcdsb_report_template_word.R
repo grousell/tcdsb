@@ -30,12 +30,14 @@ tcdsb_report_template_word <- function(report_name){
 
   # Download cover page template ----
   download.file("https://github.com/grousell/tcdsb/raw/refs/heads/master/templates/tcdsb_word_cover_page_template.docx",
-                destfile = "assets/tcdsb_word_cover_page_template.docx"
+                destfile = "assets/tcdsb_word_cover_page_template.docx",
+                mode = "wb"
   )
 
   # Download report template ----
   download.file("https://github.com/grousell/tcdsb/raw/refs/heads/master/templates/tcdsb_word_template.docx",
-                destfile = "assets/tcdsb_word_template.docx"
+                destfile = "assets/tcdsb_word_template.docx",
+                mode = "wb"
   )
 
   # Download .rmd ----
