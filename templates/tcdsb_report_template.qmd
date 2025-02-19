@@ -1,0 +1,113 @@
+---
+title: "TITLE"
+subtitle: "Subtitle"
+date: "Today" # Must be YYYY-MM-DD 
+author: "Author"
+dept: "Research or Analytics Report" #  Choose one
+fig-width: 7
+fig-height: 3
+format: 
+  typst:
+    # font-paths: assets/fonts
+    mainfont: Arial
+    template-partials:
+      - typst-template.typ
+      - typst-show.typ
+  gfm: 
+    shift-heading-level-by: 1
+    fig-dpi: 300
+  html: 
+    shift-heading-level-by: 1
+    minimal: true
+shortcodes:
+  - colbreak.lua
+# filters:
+#   - ignore-layout.lua
+keep-typ: true
+execute:
+  echo: false
+params:
+  param1: Parameter 1
+---
+
+```{=typst}
+#set page(
+  header: align(right)[
+    {{< meta title >}}
+  ],
+)
+
+```
+
+
+
+# Introduction
+
+Consequat occaecat mollit velit aliquip. Sunt Lorem cupidatat ad adipisicing do excepteur incididunt aliqua minim irure Lorem officia. Consectetur ad sunt amet est consequat voluptate sint consectetur voluptate. Aute adipisicing laborum magna amet aliquip qui in irure qui ut pariatur veniam proident ex. Sit voluptate ut irure quis excepteur nostrud est laboris. Ut ullamco velit ex laboris occaecat voluptate elit dolore ipsum fugiat est id.
+
+{{< pagebreak >}}
+
+# Second Page
+
+## Two Columns
+
+::: {layout-ncol=2}
+
+Lorem ipsum odor amet, consectetuer adipiscing elit. Cras feugiat hac dolor; lacus laoreet posuere. Dis nulla sociosqu velit leo libero purus vestibulum mattis vestibulum. Varius suscipit dapibus nascetur; mus dis et aliquam. Condimentum ut et urna fusce maximus. Senectus condimentum dis rhoncus hac, quam ad sagittis magna. Integer conubia accumsan pharetra elit lobortis.
+
+Blandit ipsum erat ex porta vivamus. Aurna inceptos consequat, leo donec dapibus nam. At lorem aliquet magnis sollicitudin; dignissim mi senectus massa. Proin fusce congue praesent sapien taciti, ut habitant. Proin torquent luctus donec tincidunt suscipit proin. Porta velit accumsan, phasellus egestas pretium rutrum. Rutrum dis leo velit justo congue vivamus. Aenean ad dolor leo parturient fames magnis vestibulum habitasse duis.
+
+Curabitur ex venenatis nam natoque aliquam pharetra lacus. Aper dapibus metus lacinia parturient rhoncus consectetur cubilia senectus. Massa dignissim vulputate rutrum mauris, est dignissim. Consectetur senectus enim nec laoreet mauris. Faucibus et cubilia taciti habitasse magnis augue dolor orci. Auctor conubia duis sed cursus fames varius dis condimentum amet. Vel ex lectus nisl; ornare diam eget. Habitant aptent nam taciti nunc ante lorem potenti faucibus dignissim. Posuere suscipit pellentesque eros volutpat tellus laoreet.
+
+Nibh finibus posuere elementum leo ac vestibulum neque aptent. Mi scelerisque conubia ante rutrum lacinia vivamus? Maximus vehicula conubia leo hac faucibus morbi per feugiat. Sollicitudin feugiat dictumst placerat nec sed morbi tristique. Quam justo aptent inceptos mollis enim consequat nam iaculis condimentum. Molestie semper fames sed euismod rhoncus. Tellus ultricies a nostra efficitur parturient felis. Scelerisque nullam curae quam at quam laoreet. Dis sem id volutpat ultrices accumsan.
+
+:::
+
+{{< pagebreak >}}
+
+# Third Page
+
+## Adding Charts / Images
+
+:::: {layout-ncol=2}
+::: {.column width="40%"}
+Here is a description of the chart. This shows the MPG vs Horsepower from the mtcars dataset that is native to R.
+:::
+
+::: {.column width="60%"}
+```{r}
+#| label: fig-mtcars1
+#| warning: FALSE
+
+library(ggplot2)
+mtcars2 <- mtcars
+mtcars2$am <- factor(
+  mtcars$am, labels = c('automatic', 'manual')
+)
+ggplot(mtcars2, aes(hp, mpg, color = am)) +
+  geom_point() +
+  geom_smooth(formula = y ~ x, method = "loess") +
+  theme(legend.position = 'bottom')
+```
+:::
+::::
+
+Also, charts can be placed under text like below:
+
+```{r}
+#| label: fig-mtcars2
+#| warning: FALSE
+
+mtcars2 <- mtcars
+mtcars2$am <- factor(
+  mtcars$am, labels = c('automatic', 'manual')
+)
+ggplot(mtcars2, aes(wt, qsec, color = am)) +
+  geom_point() +
+  geom_smooth(formula = y ~ x, method = "loess") +
+  theme(legend.position = 'bottom')
+```
+
+
+
+
