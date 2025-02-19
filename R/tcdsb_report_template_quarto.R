@@ -23,8 +23,8 @@ tcdsb_report_template_quarto <- function(report_name){
   }
 
   # Download .qmd ----
-  download.file("https://raw.githubusercontent.com/grousell/tcdsb/refs/heads/master/templates/tcdsb_report_template.Rmd",
-                destfile = glue::glue("{report_name}.rmd")
+  download.file("https://raw.githubusercontent.com/grousell/tcdsb/refs/heads/master/templates/tcdsb_report_template.qmd",
+                destfile = glue::glue("{report_name}.qmd")
   )
 
   # Download .typ files ----
