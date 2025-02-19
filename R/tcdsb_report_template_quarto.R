@@ -37,6 +37,12 @@ tcdsb_report_template_quarto <- function(report_name){
                 destfile = "typst-template.typ"
   )
 
+  # Download .lua files ----
+  download.file("https://raw.githubusercontent.com/grousell/tcdsb/refs/heads/master/templates/colbreak.lua",
+                destfile = "colbreak.lua"
+  )
+
+
   # Download TCDSB images ----
   download.file("https://github.com/grousell/tcdsb/blob/master/images/title_page_background.png?raw=true",
                 destfile = "assets/title_page_background.png",
