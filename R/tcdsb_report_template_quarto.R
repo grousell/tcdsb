@@ -34,7 +34,7 @@ tcdsb_report_template_quarto <- function(report_name){
                 )
 
   download.file("https://raw.githubusercontent.com/grousell/tcdsb/refs/heads/master/templates/typst-template.typ",
-                destfile = "typst-show.typ"
+                destfile = "typst-template.typ"
   )
 
   # Download TCDSB images ----
