@@ -48,6 +48,31 @@
     ]
 }
 
+// Headings
+
+#show heading.where(
+  level: 1
+): it => block(width: 100%)[
+  #set align(center)
+  #set text(20pt,
+            weight: "regular",
+            fill: tcdsb_colors.board_maroon)
+  #smallcaps(it.body)
+]
+
+#show heading.where(
+  level: 2
+): it => text(
+  size: 11pt,
+  weight: "regular",
+  style: "italic",
+  fill: tcdsb_colors.dark_maroon,
+  it.body ,
+  )
+
+
+// Document
+
 #let tcdsb(
   title: none,
   subtitle: none,
@@ -63,19 +88,20 @@
   doc,
 ) = {
 
+  // Set page layout
   set page(
     paper: paper,
     margin: margin,
-    numbering: none,
 
+    numbering: none
   )
 
+  // Set text properties
   set text(lang: lang,
            region: region,
            font: font,
            size: fontsize,
-           fill: tcdsb_colors.grey)
-
+           fill: black)
 
   set par(
     leading: 0.8em
@@ -87,10 +113,12 @@
     stroke: (x: none, y: 0.5pt)
   )
 
+  // Check for title page
   if title != none {
     title_page(title, subtitle, dept, date, author)
   }
 
+  // Configure heading styles
   show heading.where(level: 1): set text(weight: "light", size: 24pt)
   show heading.where(level: 1): set block(width: 100%, below: 1em)
 
@@ -99,21 +127,40 @@
     upper(it)
   }
 
+  // Configure link styles
   show link: underline
   show link: set underline(stroke: 1pt, offset: 2pt)
   show link: set text(fill: tcdsb_colors.light_blue_1)
 
+  // Configure outline block
   block(above: 0em, below: 2em)[
-    #outline(
-      indent: 1.5em
-    );
+    #outline(indent: 1.5em);
   ]
 
-  counter(page).update(0)
+  set page (
+    footer: grid(
+      columns: (33.33%, 33.33%, 33.33%),
+      rows: (auto, 60pt),
+      gutter: 3pt,
+      align: (left, center+horizon, right+horizon),
+      [], // First grid square
+      [#image("assets/R_A_Logo.png", width: 66%)], // Second grid square
+      [#counter(page).display( // Third grid square
+        "1",
+        both: false,)
+        ]
+        )
+        )
+
+  // Page numbering
+  counter(page).update(1)
   set page(numbering: "1")
+
+
 
   // Start document
   doc
+
 
 }
 
