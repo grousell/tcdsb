@@ -18,20 +18,20 @@
           #box(height: 150pt, image("assets/tcdsb_logo_BW.png", height: 95%))
           ]
 
-        #place(left + horizon, dy: -2.5in, dx: 1.25in)[ // Title of report
-            #text(weight: "light", size: 36pt, fill: tcdsb_colors.board_maroon, title)
+        #place(left + horizon, dy: -2in, dx: 1.25in)[ // Title of report
+            #text(weight: "light", size: 30pt, fill: tcdsb_colors.board_maroon, title)
             ]
 
-        #place(left + horizon, dy: -1.75in, dx: 1.25in)[ // Subtitle of report
-            #text(weight: "light", size: 28pt, fill: tcdsb_colors.board_maroon, subtitle)
+        #place(left + horizon, dy: -1.5in, dx: 1.25in)[ // Subtitle of report
+            #text(weight: "light", size: 26pt, fill: tcdsb_colors.board_maroon, subtitle)
             ]
 
         #place(left + horizon, dy: -1in, dx: 1.25in)[ // Type of report (Research or Analytics)
-            #text(weight: "light", size: 28pt, fill: tcdsb_colors.board_maroon, dept)
+            #text(weight: "light", size: 24pt, fill: tcdsb_colors.board_maroon, dept)
             ]
 
         #place(left + horizon, dy: 1in, dx: 1.25in)[ // Date of report
-            #text(weight: "light", size: 28pt, fill: tcdsb_colors.board_maroon, date)
+            #text(weight: "light", size: 24pt, fill: tcdsb_colors.board_maroon, date)
             ]
 
         #place(left + horizon, dy: 1.75in, dx: 1.25in)[ // Date of report
@@ -54,7 +54,7 @@
   level: 1
 ): it => block(width: 100%)[
   #set align(center)
-  #set text(20pt,
+  #set text(18pt,
             weight: "regular",
             fill: tcdsb_colors.board_maroon)
   #smallcaps(it.body)
