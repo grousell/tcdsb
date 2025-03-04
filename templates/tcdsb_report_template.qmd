@@ -78,7 +78,7 @@ Here is a description of the chart. This shows the MPG vs Horsepower from the mt
 #| label: fig-mtcars1
 #| warning: FALSE
 
-library(ggplot2)
+library(tidyverse)
 mtcars2 <- mtcars
 mtcars2$am <- factor(
   mtcars$am, labels = c('automatic', 'manual')
@@ -108,7 +108,41 @@ ggplot(mtcars2, aes(wt, qsec, color = am)) +
 ```
 
 
+{{< pagebreak >}}
 
+# Adding Tables
 
+The `gt` package will render tables in Typst. 
 
+```{r}
+#| warning: FALSE
+#| 
+library(gt)
+
+gtcars |>
+  select(1:3) |>
+  head() |>
+  gt() |>
+  cols_width( # Must be in %
+    mfr ~ "50%",
+    model ~ "25%",
+    year ~ "25%"
+    ) |>
+  data_color( # Conditional formatting for cells
+    columns = year,
+    rows = year >= 2016,
+    palette = c("red"),
+    apply_to = "text"
+  )
+
+```
+
+`#show figure: set block(breakable: true)`{=typst} <!-- Need to span table over multiple pages -->
+
+```{r}
+gtcars |>
+  select(1:5) |>
+  group_by(mfr) |> 
+  gt()
+```
 
