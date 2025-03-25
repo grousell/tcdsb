@@ -15,7 +15,7 @@
         background: image("assets/title_page_background.png", height: 35%, fit: "cover"))[
 
         #place(right, dy: 60pt, dx: -60pt)[ // TCDSB Logo
-          #box(height: 150pt, image("assets/tcdsb_logo_BW.png", height: 95%))
+          #box(height: 150pt, image("assets/tcdsb_logo_maroon.png", height: 95%))
           ]
 
         #place(left + horizon, dy: -2in, dx: 1.25in)[ // Title of report
@@ -42,7 +42,7 @@
         #place(center + bottom, dy: -36pt)[
           #block(height: 150pt)[
             #box(inset: (x: 12pt), line(length: 100%, angle: 90deg, stroke: 0.5pt + white))
-            #box(image("assets/R_A_logo.png"))
+            #box(image("assets/r_a_logo.png", width: 50%))
           ]
         ]
     ]
@@ -63,7 +63,7 @@
 #show heading.where(
   level: 2
 ): it => text(
-  size: 11pt,
+  size: 12pt,
   weight: "regular",
   style: "italic",
   fill: tcdsb_colors.dark_maroon,
@@ -92,7 +92,6 @@
   set page(
     paper: paper,
     margin: margin,
-
     numbering: none
   )
 
@@ -144,7 +143,7 @@
       gutter: 3pt,
       align: (left, center+horizon, right+horizon),
       [], // First grid square
-      [#image("assets/R_A_Logo.png", width: 66%)], // Second grid square
+      [#text(weight: "light", size: 12pt, fill: tcdsb_colors.board_maroon, "Research & Analytics")], // Second grid square
       [#counter(page).display( // Third grid square
         "1",
         both: false,)

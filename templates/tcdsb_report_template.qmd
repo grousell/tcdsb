@@ -1,15 +1,15 @@
 ---
 title: "TITLE"
 subtitle: "Subtitle"
-date: "Today" # Must be YYYY-MM-DD 
+date: today # Must be YYYY-MM-DD 
 author: "Author"
 dept: "Research or Analytics Report" #  Choose one
 fig-width: 7
-fig-height: 3
+fig-height: 4
 format: 
   typst:
     # font-paths: assets/fonts
-    mainfont: Arial
+    mainfont: Century Gothic
     template-partials:
       - typst-template.typ
       - typst-show.typ
@@ -79,6 +79,10 @@ Here is a description of the chart. This shows the MPG vs Horsepower from the mt
 #| warning: FALSE
 
 library(tidyverse)
+library(tcdsb)
+
+tcdsb_colours_fonts()
+
 mtcars2 <- mtcars
 mtcars2$am <- factor(
   mtcars$am, labels = c('automatic', 'manual')
@@ -86,7 +90,10 @@ mtcars2$am <- factor(
 ggplot(mtcars2, aes(hp, mpg, color = am)) +
   geom_point() +
   geom_smooth(formula = y ~ x, method = "loess") +
-  theme(legend.position = 'bottom')
+  scale_color_manual(values = c(tcdsb_board_color, tcdsb_palette[7])) + 
+  tcdsb_ggplot_theme() + 
+  theme(legend.position = 'bottom',
+        text = element_text(family = "Century Gothic"))
 ```
 :::
 ::::
@@ -101,10 +108,24 @@ mtcars2 <- mtcars
 mtcars2$am <- factor(
   mtcars$am, labels = c('automatic', 'manual')
 )
-ggplot(mtcars2, aes(wt, qsec, color = am)) +
-  geom_point() +
-  geom_smooth(formula = y ~ x, method = "loess") +
-  theme(legend.position = 'bottom')
+
+mtcars2 |> 
+  group_by(cyl, am) |>  
+  count() |> 
+  ggplot(aes(x = as.factor(cyl), y = n, group = am, fill = am)) +
+  geom_col(position = "dodge") + 
+  geom_text(aes(label = n), 
+            position = position_dodge(width = 1), 
+            vjust = -1) + 
+  labs(title = "MT Cars Data Set", 
+       x = "Cylinders", 
+       y = "Count") + 
+  scale_y_continuous(breaks = c(5, 10, 15), 
+                     limits = c(0,15)) + 
+  scale_fill_manual(values = c(tcdsb_board_color, tcdsb_palette[7])) + 
+  tcdsb_ggplot_theme() + 
+  theme(legend.position = 'bottom', 
+        text = element_text(family = "Century Gothic"))
 ```
 
 
@@ -123,17 +144,28 @@ gtcars |>
   select(1:3) |>
   head() |>
   gt() |>
+  tab_options(# Settings for entire table
+    table.font.size = 12,
+    heading.background.color = tcdsb_board_color) |>
+  tab_header(
+      title = "Regular Table",
+      subtitle = "Subtitle"
+    ) |>
   cols_width( # Must be in %
-    mfr ~ "50%",
-    model ~ "25%",
-    year ~ "25%"
+    1 ~ "50%",
+    2 ~ "10%",
+    3 ~ "10%"
     ) |>
   data_color( # Conditional formatting for cells
     columns = year,
     rows = year >= 2016,
     palette = c("red"),
     apply_to = "text"
-  )
+  ) |> 
+  opt_table_font(
+    font = "Century Gothic"
+    )
+
 
 ```
 
@@ -142,7 +174,26 @@ gtcars |>
 ```{r}
 gtcars |>
   select(1:5) |>
-  group_by(mfr) |> 
-  gt()
+  group_by(mfr) |>
+  gt() |>
+  tab_options(# Settings for entire table
+    table.font.size = 11,
+    heading.background.color = tcdsb_board_color) |>
+  tab_header(
+      title = "Grouped Table",
+      subtitle = "Subtitle"
+    ) |> 
+  tab_style(# Grouping Title
+    style = list(
+      cell_text(weight = "bold", color = "white"),
+      cell_fill(color = "#BA7D6B")
+    ),
+    locations = cells_row_groups()) |>
+  tab_style(# column headers
+    style = list(cell_text(color = "black", size = "small")), locations = cells_column_labels()) |>
+  tab_style(# Body
+    style = list(cell_text(color = "black", size = "medium")), locations = cells_body()) |>
+  opt_row_striping() |>
+  opt_table_font(font = "Century Gothic")
 ```
 
