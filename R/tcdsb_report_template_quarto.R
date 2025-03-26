@@ -50,7 +50,7 @@ tcdsb_report_template_quarto <- function(report_name){
                 destfile = "assets/title_page_background.png",
                 mode = "wb")
 
-  download.file("https://github.com/grousell/tcdsb/blob/master/images/tcdsb_logo_BW.png?raw=true",
+  download.file("https://github.com/grousell/tcdsb/blob/master/images/tcdsb_logo_maroon.png?raw=true",
                 destfile = "assets/tcdsb_logo_BW.png",
                 mode = "wb")
 
