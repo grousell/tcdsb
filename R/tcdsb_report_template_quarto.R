@@ -11,8 +11,7 @@
 
 tcdsb_report_template_quarto <- function(report_name){
   report_name <- deparse(substitute(report_name)) #makes names a character string
-
-  report_name <- "report_template"
+  # report_name <- "report_template"
 
   if(file.exists("assets")){
   } else{
@@ -51,7 +50,7 @@ tcdsb_report_template_quarto <- function(report_name){
                 mode = "wb")
 
   download.file("https://github.com/grousell/tcdsb/blob/master/images/tcdsb_logo_maroon.png?raw=true",
-                destfile = "assets/tcdsb_logo_BW.png",
+                destfile = "assets/tcdsb_logo_maroon.png",
                 mode = "wb")
 
   download.file("https://github.com/grousell/tcdsb/blob/master/images/r_a_logo.png?raw=true",
