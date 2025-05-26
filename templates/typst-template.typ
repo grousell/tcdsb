@@ -54,7 +54,7 @@
   level: 1
 ): it => block(width: 100%)[
   #set align(center)
-  #set text(18pt,
+  #set text(20pt,
             weight: "regular",
             fill: tcdsb_colors.board_maroon)
   #smallcaps(it.body)
@@ -63,10 +63,19 @@
 #show heading.where(
   level: 2
 ): it => text(
-  size: 12pt,
-  weight: "regular",
-  style: "italic",
+  size: 16pt,
+  weight: "bold",
   fill: tcdsb_colors.dark_maroon,
+  it.body ,
+  )
+
+#show heading.where(
+  level: 3
+): it => text(
+  size: 14pt,
+  weight: "bold",
+  style: "italic",
+  fill: tcdsb_colors.med_maroon,
   it.body ,
   )
 
