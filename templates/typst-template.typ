@@ -88,7 +88,7 @@
   dept: none,
   author: none,
   date: none,
-  margin: (x: 1.25in, y: 1.25in),
+  margin: (x: 1in, y: 1in),
   paper: "us-letter",
   lang: "en",
   region: "US",
@@ -145,24 +145,30 @@
     #outline(indent: 1.5em);
   ]
 
-  set page (
-    footer: grid(
+  set page(footer:
+    grid(
       columns: (33.33%, 33.33%, 33.33%),
       rows: (auto, 60pt),
       gutter: 3pt,
       align: (left, center+horizon, right+horizon),
-      [], // First grid square
-      [#text(weight: "light", size: 12pt, fill: tcdsb_colors.board_maroon, "Research & Analytics")], // Second grid square
-      [#counter(page).display( // Third grid square
-        "1",
-        both: false,)
-        ]
-        )
-        )
+      // First grid square - blank
+      [],
+      // Second grid square
+      [#text(weight: "light", size: 12pt, fill: tcdsb_colors.board_maroon, "Research & Analytics")],
+      // Third grid square
+      context [
+        #counter(page).display(
+          "1/1",
+          both: true,)
+          ]
+          )
+
+    )
+
 
   // Page numbering
-  counter(page).update(1)
-  set page(numbering: "1")
+  //counter(page).update(1)
+  //set page(numbering: "1")
 
 
 
