@@ -23,8 +23,6 @@ tcdsb_colours_fonts <- function(...){
   assign("province_green", "#39B54A", , envir = .GlobalEnv)
 
   assign("tcdsb_font", "Century Gothic", envir = .GlobalEnv)
-
-  extrafont::loadfonts(device = "win", quiet = TRUE)
-}
+  }
 
 
