@@ -92,7 +92,7 @@
   paper: "us-letter",
   lang: "en",
   region: "US",
-  font: "Century Gothic",
+  font: (),
   fontsize: 11pt,
   doc,
 ) = {
@@ -107,7 +107,7 @@
   // Set text properties
   set text(lang: lang,
            region: region,
-           font: if font == () {"Century Gothic"} else {font},
+           font: font,
            size: fontsize,
            fill: black)
 
@@ -131,15 +131,9 @@
   show heading.where(level: 1): set block(width: 100%, below: 1em)
 
   show heading.where(level: 2): it => {
-    set block(width: 100%, below: 1em)
-    block(upper(it))
-}
-
-  show heading.where(level: 3): it => {
-    set block(width: 100%, below: 1em)
-    block(upper(it))
-}
-
+    set block(below: 1.5em)
+    upper(it)
+  }
 
   // Configure link styles
   show link: underline
