@@ -36,7 +36,7 @@ devtools::install_github("grousell/tcdsb")
 
 Here is a basic plot:
 
-```{r basic_plot, echo=TRUE}
+```{r basic_plot, echo=TRUE, warning=FALSE}
 library(tidyverse)
 library(tcdsb)
 
@@ -53,7 +53,7 @@ mtcars |>
 ```
 
 The `tcdsb_colours_fonts` function loads the appropriate fonts and HEX colours. 
-```{r colours_fonts, echo=TRUE}
+```{r colours_fonts, echo=TRUE, warning=FALSE}
 tcdsb_colours_fonts()
 ```
 
@@ -62,7 +62,7 @@ tcdsb_colours_fonts()
 
 By adding `tcdsb_ggplot_theme` at the end of the code to build the plot, a consistent theme is applied.
 
-```{r themed_plot,echo=TRUE}
+```{r themed_plot,echo=TRUE, warning=FALSE}
 
 mtcars |> 
   head(3) |> 
@@ -79,7 +79,7 @@ mtcars |>
 
 Custom colours can be added to the chart using `tcdsb_board_color`. 
 
-```{r themed_plot2,echo=TRUE}
+```{r themed_plot2,echo=TRUE, warning=FALSE}
 
 mtcars |> 
   head(3) |> 
@@ -96,7 +96,7 @@ mtcars |>
 
 ## Project Setup Example
 
-```{r project_setup,echo=TRUE}
+```{r project_setup,echo=TRUE, warning=FALSE}
 
 # tcdsb::tcdsb_project_setup()
 

@@ -28,12 +28,6 @@ Here is a basic plot:
 
 ``` r
 library(tidyverse)
-#> Warning: package 'tidyverse' was built under R version 4.3.3
-#> Warning: package 'ggplot2' was built under R version 4.3.3
-#> Warning: package 'tidyr' was built under R version 4.3.3
-#> Warning: package 'dplyr' was built under R version 4.3.3
-#> Warning: package 'stringr' was built under R version 4.3.3
-#> Warning: package 'lubridate' was built under R version 4.3.3
 library(tcdsb)
 
 mtcars |> 

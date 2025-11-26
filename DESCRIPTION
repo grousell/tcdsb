@@ -21,3 +21,8 @@ Imports:
     colorspace,
     scales,
     stats
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+URL: https://grousell.github.io/tcdsb/
