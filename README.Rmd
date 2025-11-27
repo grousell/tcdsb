@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 [![R-CMD-check](https://github.com/grousell/tcdsb/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/grousell/tcdsb/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-The goal of `tcdsb` is to provide report templates and ggplot themes that align with the visual identity of the Toronto Catholic District School Board. 
+The goal of `tcdsb` is to provide report templates and ggplot themes that align with the visual identity of the Toronto Catholic District School Board (TCDSB). 
 
 ## Installation
 
@@ -36,7 +36,7 @@ devtools::install_github("grousell/tcdsb")
 
 Here is a basic plot:
 
-```{r basic_plot, echo=TRUE, warning=FALSE}
+```{r basic_plot, echo=TRUE, warning=FALSE, fig.width=4, fig.height=4}
 library(tidyverse)
 library(tcdsb)
 
@@ -62,7 +62,7 @@ tcdsb_colours_fonts()
 
 By adding `tcdsb_ggplot_theme` at the end of the code to build the plot, a consistent theme is applied.
 
-```{r themed_plot,echo=TRUE, warning=FALSE}
+```{r themed_plot,echo=TRUE, warning=FALSE, fig.width=4, fig.height=4}
 
 mtcars |> 
   head(3) |> 
@@ -79,7 +79,7 @@ mtcars |>
 
 Custom colours can be added to the chart using `tcdsb_board_color`. 
 
-```{r themed_plot2,echo=TRUE, warning=FALSE}
+```{r themed_plot2,echo=TRUE, warning=FALSE, fig.width=4, fig.height=4}
 
 mtcars |> 
   head(3) |> 

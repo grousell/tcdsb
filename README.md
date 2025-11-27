@@ -10,7 +10,7 @@
 
 The goal of `tcdsb` is to provide report templates and ggplot themes
 that align with the visual identity of the Toronto Catholic District
-School Board.
+School Board (TCDSB).
 
 ## Installation
 
