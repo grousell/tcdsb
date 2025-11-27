@@ -8,6 +8,13 @@
 \description{
 This packae is to support visual identity for Toronto Catholic District School Board.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://grousell.github.io/tcdsb/}
+}
+
+}
 \author{
 \strong{Maintainer}: Rousell Greg \email{grousell@gmail.com}
 

@@ -2,6 +2,7 @@
 "_PACKAGE"
 
 ## usethis namespace: start
+#' @importFrom data.table :=
 #' @importFrom dplyr select
 #' @importFrom glue glue
 #' @importFrom httr2 req_url_query

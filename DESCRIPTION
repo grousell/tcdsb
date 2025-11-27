@@ -20,7 +20,9 @@ Imports:
     usethis,
     colorspace,
     scales,
-    stats
+    stats,
+    gt,
+    data.table
 Suggests: 
     knitr,
     rmarkdown
