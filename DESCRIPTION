@@ -25,7 +25,8 @@ Imports:
     data.table
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    tidyverse
 VignetteBuilder: knitr
 URL: https://grousell.github.io/tcdsb/
 Config/Needs/website: rmarkdown
