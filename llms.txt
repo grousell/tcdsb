@@ -6,7 +6,7 @@ School Board (TCDSB).
 
 ## Installation
 
-You can install the development version of tcdsb from
+You can install the development version of `tcdsb` from
 [GitHub](https://github.com/) with:
 
 ``` r
@@ -125,4 +125,6 @@ assets (i.e. image files), raw and clean data.
 
 ### All vignettes
 
+- [Diverging
+  Plots](https://grousell.github.io/tcdsb/articles/diverge_plot_examples.md):
 - [tcdsb](https://grousell.github.io/tcdsb/articles/tcdsb.md):
