@@ -25,6 +25,7 @@ Imports:
     data.table
 Suggests: 
     knitr,
+    patchwork,
     rmarkdown,
     tidyverse
 VignetteBuilder: knitr
