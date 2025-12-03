@@ -76,14 +76,14 @@ tcdsb_diverge_plot_other_function <- function(df,
     ggplot2::geom_text(ggplot2::aes(x = {{ percent_col }},
                   y = {{ group_col }},
                   label = scales::percent({{ percent_col }}, accuracy = 1),
-                  hjust = -1
+                  hjust = -0.6
     ),
     size = 3 * font_size,
     family = font) +
     # Add TITLE
     ggplot2::annotate("text", x = (x_max / 2), y = num_groups + 0.75,
              label = label,
-             size = 3 * font_size,                # Font size (in mm, not pt)
+             size = 4 * font_size,                # Font size (in mm, not pt)
              family = font,
              fontface = 'bold',) +
     ggplot2::labs(x = NULL, y = NULL) +
