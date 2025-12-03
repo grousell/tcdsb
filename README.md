@@ -14,7 +14,7 @@ School Board (TCDSB).
 
 ## Installation
 
-You can install the development version of tcdsb from
+You can install the development version of `tcdsb` from
 [GitHub](https://github.com/) with:
 
 ``` r

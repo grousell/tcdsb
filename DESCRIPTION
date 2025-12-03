@@ -28,3 +28,4 @@ Suggests:
     rmarkdown
 VignetteBuilder: knitr
 URL: https://grousell.github.io/tcdsb/
+Config/Needs/website: rmarkdown
