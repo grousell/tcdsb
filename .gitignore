@@ -4,3 +4,12 @@
 .httr-oauth
 .DS_Store
 .quarto
+.Rbuildignore
+
+
+TEST.R
+
+.templates
+.images
+inst/doc
+docs
