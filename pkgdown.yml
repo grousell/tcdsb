@@ -3,7 +3,7 @@ pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
   tcdsb: tcdsb.html
-last_built: 2025-11-27T18:51Z
+last_built: 2025-12-03T14:25Z
 urls:
   reference: https://grousell.github.io/tcdsb/reference
   article: https://grousell.github.io/tcdsb/articles
