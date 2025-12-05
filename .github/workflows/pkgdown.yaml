@@ -1,5 +1,8 @@
 # Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
+
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
+name: pkgdown
+
 on:
   push:
     branches: [main, master]
@@ -8,9 +11,6 @@ on:
     types: [published]
   workflow_dispatch:
 
-name: pkgdown.yaml
-
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
@@ -19,13 +19,22 @@ permissions:
 jobs:
   pkgdown:
     runs-on: ubuntu-latest
-    # Only restrict concurrency for non-PR jobs
+
     concurrency:
-      group: pkgdown-${{ github.event_name != 'pull_request' || github.run_id }}
+      group: pkgdown-${{ github.ref }}
+      cancel-in-progress: true
+
+    # GitHub Pages environment is required by deploy-pages@v4
+    environment: github-pages
+
+    # R steps may use GITHUB_PAT, but deploy-pages does not need a token in env
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
+    # Job-level permission to upload the artifact (optional but harmless)
     permissions:
       contents: write
+
     steps:
       - uses: actions/checkout@v4
 
@@ -44,21 +53,15 @@ jobs:
         run: pkgdown::build_site()
         shell: Rscript {0}
 
-        
       # Upload the built site as a GitHub Pages artifact
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: docs
-          
+
       # Deploy the Pages artifact
       - name: Deploy to GitHub Pages 🚀
-        if: github.event_name != 'pull_request'
+        if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false }}
         uses: actions/deploy-pages@v4
         with:
-          # Optional: set a custom deployment target URL if needed
-          # preview: false
-        env:
-          # Required by actions/deploy-pages to track deployments
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+          preview: ${{ github.event_name == 'pull_request' }}
