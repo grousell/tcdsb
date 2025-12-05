@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   articles/diverge_plot_examples: diverge_plot_examples.html
   tcdsb: tcdsb.html
-last_built: 2025-12-03T16:49Z
+last_built: 2025-12-05T15:18Z
 urls:
   reference: https://grousell.github.io/tcdsb/reference
   article: https://grousell.github.io/tcdsb/articles
