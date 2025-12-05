@@ -51,14 +51,12 @@ jobs:
         with:
           path: docs
           
-      # Deploy the Pages artifact
+
+      # Deploy the Pages artifact 
       - name: Deploy to GitHub Pages 🚀
-        if: github.event_name != 'pull_request'
+      # always run; use preview for pull_request
         uses: actions/deploy-pages@v4
         with:
-          # Optional: set a custom deployment target URL if needed
-          # preview: false
-        env:
-          # Required by actions/deploy-pages to track deployments
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          preview: ${{ github.event_name == 'pull_request' }}
+
 
