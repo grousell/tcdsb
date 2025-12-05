@@ -24,6 +24,7 @@ Imports:
     gt,
     data.table
 Suggests: 
+    devtools,
     knitr,
     patchwork,
     rmarkdown,
