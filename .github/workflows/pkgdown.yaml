@@ -10,7 +10,11 @@ on:
 
 name: pkgdown.yaml
 
-permissions: read-all
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   pkgdown:
@@ -37,13 +41,24 @@ jobs:
           needs: website
 
       - name: Build site
-        run: devtools::build_site()
+        run: pkgdown::build_site()
         shell: Rscript {0}
 
-      - name: Deploy to GitHub pages 🚀
-        if: github.event_name != 'pull_request'
-        uses: JamesIves/github-pages-deploy-action@v4.5.0
+        
+      # Upload the built site as a GitHub Pages artifact
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          clean: false
-          branch: gh-pages
-          folder: docs
+          path: docs
+          
+      # Deploy the Pages artifact
+      - name: Deploy to GitHub Pages 🚀
+        if: github.event_name != 'pull_request'
+        uses: actions/deploy-pages@v4
+        with:
+          # Optional: set a custom deployment target URL if needed
+          # preview: false
+        env:
+          # Required by actions/deploy-pages to track deployments
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
