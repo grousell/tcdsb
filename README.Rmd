@@ -52,12 +52,17 @@ mtcars |>
 
 ```
 
-The `tcdsb_colours_fonts` function loads the appropriate fonts and HEX colours. 
+The `tcdsb_colours_fonts` function loads the appropriate fonts and HEX colours. It is best to assign to an object called `theme` and then call each color, palette or font. 
 ```{r colours_fonts, echo=TRUE, warning=FALSE}
-tcdsb_colours_fonts()
-```
 
-![](images/tcdsb_colour_font_pic.png)
+theme <- tcdsb::tcdsb_colours_fonts()
+
+theme$tcdsb_board_color
+
+theme$tcdsb_palette
+
+theme$tcdsb_font
+```
 
 
 By adding `tcdsb_ggplot_theme` at the end of the code to build the plot, a consistent theme is applied.
@@ -85,7 +90,7 @@ mtcars |>
   head(3) |> 
   rownames_to_column("car") |> 
   ggplot(aes(x = car, y = disp)) +
-  geom_col(fill = tcdsb_board_color) + 
+  geom_col(fill = theme$tcdsb_board_color) + 
   labs(title = "Title of Plot", 
        subtitle = "Subtitle", 
        x = NULL, 

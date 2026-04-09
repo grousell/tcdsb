@@ -41,16 +41,26 @@ mtcars |>
        y = "Displacement") 
 ```
 
-<img src="man/figures/README-basic_plot-1.png" width="100%" />
+<img src="man/figures/README-basic_plot-1.png" alt="" width="100%" />
 
 The `tcdsb_colours_fonts` function loads the appropriate fonts and HEX
-colours.
+colours. It is best to assign to an object called `theme` and then call
+each color, palette or font.
 
 ``` r
-tcdsb_colours_fonts()
-```
 
-![](images/tcdsb_colour_font_pic.png)
+theme <- tcdsb::tcdsb_colours_fonts()
+
+theme$tcdsb_board_color
+#> [1] "#951B1E"
+
+theme$tcdsb_palette
+#>  [1] "#560F11" "#2D0026" "#BA7D6B" "#FFE3A6" "#8EB8C2" "#6BCAD4" "#016567"
+#>  [8] "#7DA387" "#8ACA88" "#9D976E"
+
+theme$tcdsb_font
+#> [1] "Century Gothic"
+```
 
 By adding `tcdsb_ggplot_theme` at the end of the code to build the plot,
 a consistent theme is applied.
@@ -69,7 +79,7 @@ mtcars |>
   tcdsb::tcdsb_ggplot_theme()
 ```
 
-<img src="man/figures/README-themed_plot-1.png" width="100%" />
+<img src="man/figures/README-themed_plot-1.png" alt="" width="100%" />
 
 Custom colours can be added to the chart using `tcdsb_board_color`.
 
@@ -79,7 +89,7 @@ mtcars |>
   head(3) |> 
   rownames_to_column("car") |> 
   ggplot(aes(x = car, y = disp)) +
-  geom_col(fill = tcdsb_board_color) + 
+  geom_col(fill = theme$tcdsb_board_color) + 
   labs(title = "Title of Plot", 
        subtitle = "Subtitle", 
        x = NULL, 
@@ -87,7 +97,7 @@ mtcars |>
   tcdsb::tcdsb_ggplot_theme()
 ```
 
-<img src="man/figures/README-themed_plot2-1.png" width="100%" />
+<img src="man/figures/README-themed_plot2-1.png" alt="" width="100%" />
 
 ## Project Setup Example
 
