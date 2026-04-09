@@ -2,10 +2,23 @@
 /*-- scss:defaults --*/
 
 $primary: #560F11;
+$secondary: #8EB8C2;
 $presentation-heading-color: $primary;
+$presentation-h3-color: $secondary;
 $font-family-sans: "Inter", system-ui, sans-serif;
 
-.reveal h1 {
+/* Level-2 headings only - Slide titles */
+.reveal .slides h2 {
   font-weight: 700;
+  font-size: 2em;
+  text-align: left; /* Can change to center*/
 }
 
+
+/* Level-3 headings only */
+.reveal .slides h3 {
+  color: $secondary;
+  font-weight: 350;
+  font-size: 1.2em;
+  text-align: left; /* Can change to center*/
+}
