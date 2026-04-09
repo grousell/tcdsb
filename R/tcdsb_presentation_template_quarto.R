@@ -14,7 +14,7 @@
 
 tcdsb_presentation_template_quarto <- function(presentation_name){
 
-  report_name <- deparse(substitute(report_name)) #makes names a character string
+  report_name <- deparse(substitute(presentation_name)) #makes names a character string
 
   if(file.exists("assets")){
   } else{
@@ -34,7 +34,7 @@ tcdsb_presentation_template_quarto <- function(presentation_name){
   # Download .qmd ----
 
   download.file("https://raw.githubusercontent.com/grousell/tcdsb/master/templates/tcdsb_presentation_template_revealjs.qmd",
-                destfile = glue::glue("{report_name}.qmd")
+                destfile = glue::glue("{presentation_name}.qmd")
   )
 
   # Download clean title page html file ----
