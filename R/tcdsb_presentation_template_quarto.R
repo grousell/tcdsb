@@ -1,5 +1,5 @@
 
-#' Presentation Template - ReavelJS
+#' Presentation Template - RevealJS
 #'
 #' @param presentation_name
 #' File name
