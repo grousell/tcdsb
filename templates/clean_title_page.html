@@ -1,0 +1,42 @@
+<style>
+/* CSS to hide the footer and logo */
+.hide {
+  display: none !important;
+}
+</style>
+
+<script>
+function removeElementsOnTitle() {
+  let footer = document.querySelector('div.footer');
+  let logo = document.querySelector('img.slide-logo'); // Select the logo element
+
+  const hideElements = () => {
+    if (footer) footer.classList.add('hide');
+    if (logo) logo.classList.add('hide'); // Hide the logo
+  };
+
+  const showElements = () => {
+    if (footer) footer.classList.remove('hide');
+    if (logo) logo.classList.remove('hide'); // Show the logo
+  };
+
+  // Initially check if it's the first slide when ready
+  Reveal.on('ready', event => {
+    if (Reveal.isFirstSlide()) {
+      hideElements();
+    }
+  });
+
+  // Listen for slide changes
+  Reveal.on('slidechanged', event => {
+    if (Reveal.isFirstSlide()) {
+      hideElements();
+    } else {
+      showElements();
+    }
+  });
+}
+
+// Call the function on window load
+window.onload = removeElementsOnTitle();
+</script>

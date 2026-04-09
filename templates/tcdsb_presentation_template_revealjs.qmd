@@ -1,0 +1,220 @@
+---
+title: "Employee Engagment"
+subtitle: "`r params$param1`"
+format: 
+  revealjs:
+    fig-format: svg
+    embed-resources: true
+    include-after-body: styles/clean_title_page.html
+    theme: [default, styles/tcdsb_revealjs.scss]
+    css: styles/tcdsb_extras.css
+    footer: "Employee Engagment and Census"
+    logo: assets/r_a_logo.png
+    transition: fade #slide 
+    code-fold: true
+    code-summary: ""
+    title-slide-attributes: 
+      data-background-image: assets/title_slide_background.png
+dev: ragg_png
+params:
+  param1: "APSSP"
+---
+
+```{r}
+#| label: source_r_scripts
+library(tidyverse)
+library(gt)
+library(patchwork)
+library(tcdsb)
+
+tcdsb_colours_fonts()
+options(scipen = 999)
+
+my_text_size <- 1.65
+
+load("data/emp_survey_data_BY_EMP_GROUPS.Rdata")
+load("data/emp_survey_measures.Rdata")
+
+emp_survey <- emp_survey |> 
+  mutate(short_name = as.character(short_name)) |>
+  mutate(short_name =  ifelse(short_name == "Non-Unionized - Permanent and Temporary", 
+                             "Non-Unionized", short_name)
+         ) 
+
+
+
+df <- emp_survey |>
+  dplyr::filter(short_name == params$param1)
+
+n_responses <- length(df$id)
+emp_group <- params$param1  
+
+
+# df <- emp_survey |>
+#   dplyr::filter(short_name == emp_groups[1])
+
+
+measures <- c("di_cat", "engage_cat", "grow_devp_cat", "well_being_cat", 
+              "lead_cat", "org_cult_cat", "rec_supp_cat", "work_enviro_cat")
+
+all_measures <- df |>
+  select(short_name, all_of(measures)) |>
+  pivot_longer(cols = all_of(measures), names_to = "column", values_to = "value") |>
+  mutate(column = case_when(
+    column == "di_cat" ~ "Diversity & Inclusion",
+    column == "engage_cat" ~ "Engagement",
+    column == "grow_devp_cat" ~ "Growth & Development",
+    column == "well_being_cat" ~ "Well-Being",
+    column == "lead_cat" ~ "Leadership Effectiveness",
+    column == "org_cult_cat" ~ "Organizational Culture",
+    column == "rec_supp_cat" ~ "Recognition & Support",
+    column == "work_enviro_cat" ~ "Work Environment"
+  ))
+
+high_percent <- all_measures |>
+  group_by(column) |>
+  count(value) |>
+  dplyr::filter(value != "Missing") |>
+  mutate(perc = n / sum(n)) |>
+  dplyr::filter(value == "High") |>
+  arrange(desc(perc))
+
+
+tcdsb_low <- all_measures |>
+  dplyr::filter(short_name != "Missing") |> 
+  mutate(value = factor (value, levels = c("High","Medium", "Low"))) |> 
+  group_by(column) |>
+  count(value, 
+        .drop = FALSE) |>
+  dplyr::filter(value != "Missing") |>
+  mutate(perc = n / sum(n)) |> 
+  dplyr::filter(value == "Low") |> 
+  mutate(short_name = "TCDSB")
+
+all_measures_table <- all_measures |>
+  dplyr::filter(short_name != "Missing") |> 
+  mutate(value = factor (value, levels = c("High","Medium", "Low"))) |> 
+  group_by(short_name, column) |>
+  count(value, 
+        .drop = FALSE) |>
+  dplyr::filter(value != "Missing") |>
+  mutate(perc = n / sum(n)) |>
+  # dplyr::filter(short_name == "CUPE 3155") |> 
+  dplyr::filter(value == "Low") |> 
+  bind_rows(tcdsb_low) |> 
+  mutate(tcdsb = ifelse(short_name == "TCDSB", "TCDSB", "Other")) 
+
+
+all_measures_plot <- all_measures |>
+  group_by(column) |>
+  count(value) |>
+  dplyr::filter(value != "Missing") |>
+  mutate(perc = n / sum(n),
+         value = factor (value, levels = c("High","Medium", "Low")),
+         column = factor (column, levels = high_percent$column)) |>
+  ggplot(aes(x = perc, y = fct_rev(column), fill = value)) +
+  geom_col() +
+  geom_text(
+    aes(label = scales::percent(perc, accuracy = 0.1)),
+    position = position_stack(vjust = 0.5),
+    family = tcdsb_font,
+    size = 3 * my_text_size
+    ) +
+  scale_fill_manual(values = c(
+    "Low" = "#016567",
+    "Medium" = "#8EB8C2",
+    "High" = "#d2a940"
+  )) +
+  scale_x_continuous(labels = scales::percent_format()) +
+  labs(title = glue::glue("Key Measures - {params$param1}"),
+       subtitle = "Grouped by Low, Medium, and High Response Levels",
+       x = NULL,
+       y = NULL
+       ) +
+  guides(fill = guide_legend(reverse = TRUE)
+         ) +
+  tcdsb_ggplot_theme(text_scale = my_text_size) +
+  theme(
+    panel.grid.major.x = ggplot2::element_line(colour = "grey90"),
+    panel.grid.major.y = ggplot2::element_line(colour = "NA")
+    )
+
+
+```
+
+## Introduction
+
+In the fall of 2025 TCDSB conducted a staff engagement and census survey that focused on seven themes:
+
+-   Diversity and Inclusion\
+-   Employee Engagement\
+-   Employee Growth and Development\
+-   Employee Well-Being\
+-   Leadership Effectiveness\
+-   Organizational Culture\
+-   Recognition and Support
+
+## Methodology
+
+All survey questions were rated using a five-point Likert scale:
+
+**1 = Strongly Disagree -> 5 = Strongly Agree.**
+
+An overall score was calculated by averaging the responses
+
+-   **Low**: Mean score less than 2
+-   **Medium**: Mean score between 2.1 and 3.9
+-   **High**: Mean score of 4 or higher
+
+A **Low** score indicates mostly "Strongly Disagree" or "Disagree," a **High** score indicates mostly "Agree" or "Strongly Agree".
+
+## Measures
+
+`r params$param1` had `r n_responses` responses to the survey. 
+
+```{r}
+#| label: measures_plot
+#| fig-path: !expr paste0("figures/", params$param1, "/")
+#| fig.width: 10
+#| fig.height: 5
+
+
+
+all_measures_plot
+```
+::: {.notes} 
+
+
+:::
+
+## Engagement
+```{r}
+#| label: engagement_plot
+#| fig-path: !expr paste0("figures/", params$param1, "/")
+# #| fig.width: 10 -->
+# #| fig.height: 5 -->
+
+
+my_font_size <- 1
+
+df |> 
+  emp_group_plot_function(engage)
+
+
+
+```
+
+
+
+## Growth and Development
+```{r}
+#| label: org_culture_plot
+#| fig-path: !expr paste0("figures/", params$param1, "/")
+#| fig.width: 10
+#| fig.height: 6
+
+
+df |> 
+  emp_group_plot_function(grow_devp)
+
+```
