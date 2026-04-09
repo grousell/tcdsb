@@ -4,10 +4,10 @@
 #' Name of the report to be created.
 #' @return
 #' Templates and scripts to create the report
-#' @export
-#'
 #' @examples
 #' #tcdsb_report_template_quarto("test_report")
+#'
+#' @export
 
 tcdsb_report_template_quarto <- function(report_name){
   report_name <- deparse(substitute(report_name)) #makes names a character string
