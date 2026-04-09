@@ -1,5 +1,18 @@
 
-tcdsb_report_template_quarto <- function(report_name){
+#' Presentation Template - ReavelJS
+#'
+#' @param presentation_name
+#' File name
+#'
+#' @returns
+#' Template to produce RevealJS presentation
+#' @export
+#'
+#' @examples
+#' # tcdsb_report_template_quarto(new_presentation)
+
+
+tcdsb_report_template_quarto <- function(presentation_name){
 
   report_name <- deparse(substitute(report_name)) #makes names a character string
 
