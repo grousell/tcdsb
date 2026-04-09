@@ -12,7 +12,7 @@
 #' # tcdsb_report_template_quarto(new_presentation)
 
 
-tcdsb_report_template_quarto <- function(presentation_name){
+tcdsb_presentation_template_quarto <- function(presentation_name){
 
   report_name <- deparse(substitute(report_name)) #makes names a character string
 
