@@ -7,7 +7,7 @@
 tcdsb_colours_fonts(...)
 }
 \arguments{
-\item{...}{Leave blank.}
+\item{...}{Not used. Included for possible future use.}
 }
 \value{
 R objects with names and HEX colors for TCDSB visual identity
@@ -16,5 +16,7 @@ R objects with names and HEX colors for TCDSB visual identity
 TCDSB Colors and Fonts
 }
 \examples{
-# tcdsb_colours_fonts()
+# theme <- tcdsb_colours_fonts()
+# theme$tcdsb_board_color
+# "#951B1E"
 }
