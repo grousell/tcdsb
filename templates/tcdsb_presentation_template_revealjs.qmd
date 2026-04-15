@@ -20,6 +20,14 @@ params:
   param1: "Parameter 1"
 ---
 
+## {.center}
+
+:::{.center-h}
+AI Free Presentation
+
+Made by Humans, for Humans
+:::
+
 
 
 ## Slide 1 

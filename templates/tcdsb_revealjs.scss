@@ -22,3 +22,11 @@ $font-family-sans: "Inter", system-ui, sans-serif;
   font-size: 1.2em;
   text-align: left; /* Can change to center*/
 }
+
+.reveal section div.center-h {
+	text-align: center;
+	font-weight: 700;
+	font-size: 78px;
+	color: $primary;
+
+}
