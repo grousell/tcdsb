@@ -13,3 +13,5 @@ TEST.R
 .images
 inst/doc
 docs
+/doc/
+/Meta/
