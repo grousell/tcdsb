@@ -1,9 +1,9 @@
 Package: tcdsb
-Title: TCDSB - Visual Identity
-Version: 0.0.0.9000
+Title: TCDSB Research and Analytics Toolkit
+Version: 0.1.0
 Authors@R: 
     person("Rousell", "Greg", , "grousell@gmail.com", role = c("aut", "cre"))
-Description: This packae is to support visual identity for Toronto Catholic District School Board.
+Description: This package is to support Research and Analytics staff with internal convenience functions and visual identity for Toronto Catholic District School Board.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -12,12 +12,9 @@ Imports:
     dplyr,
     ggplot2,
     glue,
-    httr2,
-    jsonlite,
     stringr,
     tidyr,
     utils,
-    usethis,
     colorspace,
     scales,
     stats,
@@ -27,7 +24,9 @@ Suggests:
     knitr,
     patchwork,
     rmarkdown,
-    tidyverse
+    httr2,
+    jsonlite,
+    usethis,
 VignetteBuilder: knitr
-URL: https://grousell.github.io/tcdsb/
+URL: https://github.com/tcdsb-ra/tcdsb.git
 Config/Needs/website: rmarkdown

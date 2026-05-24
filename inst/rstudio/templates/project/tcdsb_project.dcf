@@ -1,0 +1,47 @@
+Binding: tcdsb_project
+Title: TCDSB Project
+Subtitle: Standard TCDSB research or analytics project
+OpenFiles: README.md
+
+Parameter: project_title
+Widget: TextInput
+Label: Project Title
+Default: My TCDSB Project
+Position: left
+
+Parameter: project_owner
+Widget: TextInput
+Label: Owner/Author of the Project
+Default: My Name
+Position: left
+
+Parameter: project_type
+Widget: SelectInput
+Label: Project Type
+Fields: Research, Analytics
+Default: Research
+Position: left
+
+Parameter: source_data
+Widget: TextInput
+Label: Source Data
+Default: Source data location
+Position: left
+
+Parameter: include_presentation
+Widget: CheckboxInput
+Label: Quarto presentation
+Default: Off
+Position: right
+
+Parameter: include_pdf_report
+Widget: CheckboxInput
+Label: Quarto PDF report
+Default: Off
+Position: right
+
+Parameter: include_webpage
+Widget: CheckboxInput
+Label: Quarto webpage
+Default: Off
+Position: right
