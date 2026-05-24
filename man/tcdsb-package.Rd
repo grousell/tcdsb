@@ -4,14 +4,14 @@
 \name{tcdsb-package}
 \alias{tcdsb}
 \alias{tcdsb-package}
-\title{tcdsb: TCDSB - Visual Identity}
+\title{tcdsb: TCDSB Research and Analytics Toolkit}
 \description{
-This packae is to support visual identity for Toronto Catholic District School Board.
+This package is to support Research and Analytics staff with internal convenience functions and visual identity for Toronto Catholic District School Board.
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://grousell.github.io/tcdsb/}
+  \item \url{https://github.com/tcdsb-ra/tcdsb.git}
 }
 
 }
