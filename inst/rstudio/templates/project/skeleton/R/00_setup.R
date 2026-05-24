@@ -14,7 +14,7 @@ if (!require("Require")) {
 # Require latest TCDSB package
 # Note: this will automatically update if a new
 #       version is available.
-Require::Require("tcdsb-ra/tcdsb@development (HEAD)")
+Require::Require("grousell/tcdsb@development (HEAD)")
 
 # Define all packages required for this project.
 # Note: alternatively, use Require::Install() to ensure
@@ -28,7 +28,7 @@ Require::Require(
                    "glue",
                    "ggplot2",
                    "gt",
-                   "usethis",
+                   "usethis"
                    )
                  )
 # Customize the above example as needed.
