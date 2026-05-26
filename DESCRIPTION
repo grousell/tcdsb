@@ -19,14 +19,14 @@ Imports:
     scales,
     stats,
     gt,
+    httr2,
+    jsonlite,
+    usethis,
     data.table
 Suggests: 
     knitr,
     patchwork,
-    rmarkdown,
-    httr2,
-    jsonlite,
-    usethis,
+    rmarkdown
 VignetteBuilder: knitr
 URL: https://github.com/tcdsb-ra/tcdsb.git
 Config/Needs/website: rmarkdown
