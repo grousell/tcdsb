@@ -2,17 +2,28 @@
 % Please edit documentation in R/tcdsb_project_setup.R
 \name{tcdsb_project_setup}
 \alias{tcdsb_project_setup}
-\title{TCDSB Project Setup
-A function that sets up a project folder. Creates a README file subfolders.}
+\title{TCDSB Project Setup}
 \usage{
-tcdsb_project_setup()
+tcdsb_project_setup(
+  project_title = "My TCDSB Project",
+  project_type = "Research",
+  source_data = ""
+)
+}
+\arguments{
+\item{project_title}{Character. Title for the project README.}
+
+\item{project_type}{Character. One of \code{"Research"} or \code{"Analytics"}.}
+
+\item{source_data}{Character. Description of the source data.}
 }
 \value{
-README file and subfolders
+Called for side effects; creates directories and README.
 }
 \description{
-TCDSB Project Setup
-A function that sets up a project folder. Creates a README file subfolders.
+Sets up a standard TCDSB project structure in the current working directory.
+This function is retained for console/historical use; the RStudio New Project
+wizard calls \code{tcdsb_project()} directly.
 }
 \examples{
 # tcdsb_project_setup()
