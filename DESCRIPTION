@@ -9,34 +9,37 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
 Imports:
+    dplyr,
+    glue, 
+    stringr, 
+    tidyr,
     arrow,
-    blastula,
     colorspace,
     data.table,
     DBI,
-    devtools,
     flextable,
     gt,
     gtExtras,
     gtsummary,
     httr2,
-    jsonlite,
     keyring,
-    knitr,
     odbc,
     officer,
     patchwork,
-    renv,
-    rmarkdown,
     rstudioapi,
     scales,
     tictoc,
-    tidyverse,
-    usethis,
-    yaml
+    tidyverse
 Remotes:
     grousell/alchemeR,
     grousell/obt
+Suggests:
+    knitr,
+    renv,
+    rmarkdown,
+    usethis,
+    jsonlite,
+    yaml
 VignetteBuilder: knitr
 URL: https://github.com/tcdsb-ra/tcdsb.git
 Config/Needs/website: rmarkdown
