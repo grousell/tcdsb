@@ -22,11 +22,13 @@ Imports:
     httr2,
     jsonlite,
     usethis,
-    data.table
-Suggests: 
+    data.table,
     knitr,
     patchwork,
     rmarkdown
+Remotes:
+    grousell/alchemeR,
+    grousell/obt
 VignetteBuilder: knitr
 URL: https://github.com/tcdsb-ra/tcdsb.git
 Config/Needs/website: rmarkdown
