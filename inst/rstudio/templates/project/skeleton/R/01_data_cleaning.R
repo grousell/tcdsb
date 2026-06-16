@@ -22,3 +22,6 @@ source("R/00_setup.R")
 #########################
 #      SAVE INTERIM     #
 #########################
+
+# Example:
+# save(table1, variable1, table2, list1, file = "data/intermediate.RData")
