@@ -8,24 +8,32 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
-Imports: 
-    dplyr,
-    ggplot2,
-    glue,
-    stringr,
-    tidyr,
-    utils,
+Imports:
+    arrow,
+    blastula,
     colorspace,
-    scales,
-    stats,
+    data.table,
+    DBI,
+    devtools,
+    flextable,
     gt,
+    gtExtras,
+    gtsummary,
     httr2,
     jsonlite,
-    usethis,
-    data.table,
+    keyring,
     knitr,
+    odbc,
+    officer,
     patchwork,
-    rmarkdown
+    renv,
+    rmarkdown,
+    rstudioapi,
+    scales,
+    tictoc,
+    tidyverse,
+    usethis,
+    yaml
 Remotes:
     grousell/alchemeR,
     grousell/obt
