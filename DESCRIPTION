@@ -22,6 +22,7 @@ Imports:
     gtExtras,
     gtsummary,
     httr2,
+    jsonlite,
     keyring,
     odbc,
     officer,
@@ -38,7 +39,6 @@ Suggests:
     renv,
     rmarkdown,
     usethis,
-    jsonlite,
     yaml
 VignetteBuilder: knitr
 URL: https://github.com/tcdsb-ra/tcdsb.git
