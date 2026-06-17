@@ -32,7 +32,8 @@ Imports:
     glue,
     obt,
     stringr,
-    tidyr
+    tidyr,
+    ggplot2
 Remotes:
     grousell/alchemeR,
     grousell/obt
