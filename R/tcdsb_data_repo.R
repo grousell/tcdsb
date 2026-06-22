@@ -84,6 +84,21 @@ tcdsb_connect_data_repo <- function(...) {
     stop(sprintf("Cannot connect to %s / %s after %d attempts.\nLast error: %s",
                  args$Server, args$Database, 5L, last_error))
 
+  observer <- getOption("connectionObserver")
+  if (!is.null(observer))
+    observer$connectionOpened(
+      type             = "ODBC",
+      host             = args$Server,
+      displayName      = paste(args$Server, args$Database, sep = " / "),
+      connectCode      = sprintf('connect_data_repo(Server = "%s", Database = "%s")', args$Server, args$Database),
+      disconnect       = function() DBI::dbDisconnect(conn),
+      listObjectTypes  = function() list(table = list(contains = "data")),
+      listObjects      = function(...) data.frame(name = DBI::dbListTables(conn), type = "table", stringsAsFactors = FALSE),
+      listColumns      = function(...) data.frame(name = character(), type = character()),
+      previewObject    = function(rowLimit, ...) data.frame(),
+      connectionObject = conn
+    )
+
   message(sprintf("Connected to %s / %s.", args$Server, args$Database))
-  conn
+  return(conn)
 }
