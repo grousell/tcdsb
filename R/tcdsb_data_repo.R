@@ -1,7 +1,8 @@
 #' Connect to The Research Data Repo
 #'
-#' Function standardizes the data repo connection details accross projects and
-#' increases connection reliability.
+#' Function standardizes the data repo connection details across projects and
+#' increases connection reliability, also updating the connections tab
+#' in Rstudio and Positron.
 #'
 #' Currently wraps \code{DBI::dbConnect()} with retry logic and department
 #' defaults. Existing \code{DBI::dbConnect(odbc::odbc(), ...)} calls can be
