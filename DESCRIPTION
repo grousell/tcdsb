@@ -8,25 +8,41 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
-Imports: 
-    dplyr,
-    ggplot2,
-    glue,
-    stringr,
-    tidyr,
-    utils,
+Depends:
+    arrow,
     colorspace,
-    scales,
-    stats,
+    data.table,
+    DBI,
+    flextable,
     gt,
+    gtExtras,
+    gtsummary,
     httr2,
     jsonlite,
-    usethis,
-    data.table
-Suggests: 
-    knitr,
+    keyring,
+    odbc,
+    officer,
     patchwork,
-    rmarkdown
+    rstudioapi,
+    scales,
+    tictoc,
+    tidyverse
+Imports:
+    dplyr,
+    glue,
+    obt,
+    stringr,
+    tidyr,
+    ggplot2
+Remotes:
+    grousell/alchemeR,
+    grousell/obt
+Suggests:
+    knitr,
+    renv,
+    rmarkdown,
+    usethis,
+    yaml
 VignetteBuilder: knitr
 URL: https://github.com/tcdsb-ra/tcdsb.git
 Config/Needs/website: rmarkdown
