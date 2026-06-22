@@ -82,7 +82,7 @@ tcdsb_connect_data_repo <- function(...) {
 
   if (is.null(conn))
     stop(sprintf("Cannot connect to %s / %s after %d attempts.\nLast error: %s",
-                 args$Server, args$Database, retries, last_error))
+                 args$Server, args$Database, 5L, last_error))
 
   message(sprintf("Connected to %s / %s.", args$Server, args$Database))
   conn
