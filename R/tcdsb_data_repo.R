@@ -93,10 +93,19 @@ tcdsb_connect_data_repo <- function(...) {
       type             = "ODBC",
       host             = args$Server,
       displayName      = paste(args$Server, args$Database, sep = " / "),
-      connectCode      = sprintf('connect_data_repo(Server = "%s", Database = "%s")', args$Server, args$Database),
-      disconnect       = function() DBI::dbDisconnect(conn),
+      connectCode      = sprintf('tcdsb_connect_data_repo(%s)',
+                                 paste(
+                                   mapply(function(k, v) sprintf('%s = "%s"', k, v), names(args), args),
+                                   collapse = ", "
+                                 )),
+      disconnect = function() try(DBI::dbDisconnect(conn), silent = TRUE),
       listObjectTypes  = function() list(table = list(contains = "data")),
-      listObjects      = function(...) data.frame(name = DBI::dbListTables(conn), type = "table", stringsAsFactors = FALSE),
+      listObjects = function(...) {
+        try(
+          data.frame(name = DBI::dbListTables(conn), type = "table", stringsAsFactors = FALSE),
+          silent = TRUE
+        )
+      },
       listColumns      = function(...) data.frame(name = character(), type = character()),
       previewObject    = function(rowLimit, ...) data.frame(),
       connectionObject = conn
@@ -105,3 +114,4 @@ tcdsb_connect_data_repo <- function(...) {
   message(sprintf("Connected to %s / %s.", args$Server, args$Database))
   return(conn)
 }
+#
