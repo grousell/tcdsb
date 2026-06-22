@@ -20,6 +20,7 @@
 #' @return A \code{DBIConnection} object.
 #'
 #' @examples
+#' \dontrun{
 #' # Use all defaults (requires .Rprofile setup)
 #' data_repo <- tcdsb_connect_data_repo()
 #'
@@ -30,6 +31,7 @@
 #' data_repo <- tcdsb_connect_data_repo(UID = "tcdsb_research_dept",
 #'            PWD = keyring::key_get("studentanalytics", "tcdsb_research_dept"),
 #'
+#' }
 #' @export
 tcdsb_connect_data_repo <- function(...) {
 
@@ -72,7 +74,7 @@ tcdsb_connect_data_repo <- function(...) {
     if (inherits(result, "error")) {
       last_error <- conditionMessage(result)
       if (grepl("28000", last_error))
-        stop("Authentication failure (ODBC 28000) — aborting to avoid lockout:\n", last_error)
+        stop("Authentication failure (ODBC 28000): aborting to avoid lockout:\n", last_error)
       if (i < 5) Sys.sleep(0.5 * i)
     } else {
       conn <- result
