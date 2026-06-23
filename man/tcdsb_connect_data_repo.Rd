@@ -19,8 +19,9 @@ If \code{PWD} is supplied, password auth is used for service accounts; otherwise
 A \code{DBIConnection} object.
 }
 \description{
-Function standardizes the data repo connection details accross projects and
-increases connection reliability.
+Function standardizes the data repo connection details across projects and
+increases connection reliability, also updating the connections tab
+in Rstudio and Positron.
 }
 \details{
 Currently wraps \code{DBI::dbConnect()} with retry logic and department
@@ -30,6 +31,7 @@ can be changed in the future without breaking department code if the defaults
 are used.
 }
 \examples{
+\dontrun{
 # Use all defaults (requires .Rprofile setup)
 data_repo <- tcdsb_connect_data_repo()
 
@@ -40,4 +42,5 @@ data_repo <- tcdsb_connect_data_repo(Server = "Otherserver", Database = "OtherDB
 data_repo <- tcdsb_connect_data_repo(UID = "tcdsb_research_dept",
            PWD = keyring::key_get("studentanalytics", "tcdsb_research_dept"),
 
+}
 }

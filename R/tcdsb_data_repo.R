@@ -1,7 +1,8 @@
 #' Connect to The Research Data Repo
 #'
-#' Function standardizes the data repo connection details accross projects and
-#' increases connection reliability.
+#' Function standardizes the data repo connection details across projects and
+#' increases connection reliability, also updating the connections tab
+#' in Rstudio and Positron.
 #'
 #' Currently wraps \code{DBI::dbConnect()} with retry logic and department
 #' defaults. Existing \code{DBI::dbConnect(odbc::odbc(), ...)} calls can be
@@ -20,6 +21,7 @@
 #' @return A \code{DBIConnection} object.
 #'
 #' @examples
+#' \dontrun{
 #' # Use all defaults (requires .Rprofile setup)
 #' data_repo <- tcdsb_connect_data_repo()
 #'
@@ -30,6 +32,7 @@
 #' data_repo <- tcdsb_connect_data_repo(UID = "tcdsb_research_dept",
 #'            PWD = keyring::key_get("studentanalytics", "tcdsb_research_dept"),
 #'
+#' }
 #' @export
 tcdsb_connect_data_repo <- function(...) {
 
@@ -72,7 +75,7 @@ tcdsb_connect_data_repo <- function(...) {
     if (inherits(result, "error")) {
       last_error <- conditionMessage(result)
       if (grepl("28000", last_error))
-        stop("Authentication failure (ODBC 28000) — aborting to avoid lockout:\n", last_error)
+        stop("Authentication failure (ODBC 28000): aborting to avoid lockout:\n", last_error)
       if (i < 5) Sys.sleep(0.5 * i)
     } else {
       conn <- result
@@ -84,6 +87,31 @@ tcdsb_connect_data_repo <- function(...) {
     stop(sprintf("Cannot connect to %s / %s after %d attempts.\nLast error: %s",
                  args$Server, args$Database, 5L, last_error))
 
+  observer <- getOption("connectionObserver")
+  if (!is.null(observer))
+    observer$connectionOpened(
+      type             = "ODBC",
+      host             = args$Server,
+      displayName      = paste(args$Server, args$Database, sep = " / "),
+      connectCode      = sprintf('tcdsb_connect_data_repo(%s)',
+                                 paste(
+                                   mapply(function(k, v) sprintf('%s = "%s"', k, v), names(args), args),
+                                   collapse = ", "
+                                 )),
+      disconnect = function() try(DBI::dbDisconnect(conn), silent = TRUE),
+      listObjectTypes  = function() list(table = list(contains = "data")),
+      listObjects = function(...) {
+        try(
+          data.frame(name = DBI::dbListTables(conn), type = "table", stringsAsFactors = FALSE),
+          silent = TRUE
+        )
+      },
+      listColumns      = function(...) data.frame(name = character(), type = character()),
+      previewObject    = function(rowLimit, ...) data.frame(),
+      connectionObject = conn
+    )
+
   message(sprintf("Connected to %s / %s.", args$Server, args$Database))
-  conn
+  return(conn)
 }
+#
