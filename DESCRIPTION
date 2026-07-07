@@ -2,13 +2,23 @@ Package: tcdsb
 Title: TCDSB Research and Analytics Toolkit
 Version: 0.1.0
 Authors@R: 
-    person("Rousell", "Greg", , "grousell@gmail.com", role = c("aut", "cre"))
+    c(
+    person("Rousell", "Greg", , "grousell@gmail.com", role = c("aut", "cre")),
+    person("Locklin", "Jason", , "jason_locklin@tcdsb.org", role = c("aut", "ctb"))
+    )
 Description: This package is to support Research and Analytics staff with internal convenience functions and visual identity for Toronto Catholic District School Board.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
 Depends:
+    R (>= 4.6.0),
+    dplyr
+Imports:
+    glue,
+    obt,
+    stringr,
+    tidyr,
+    ggplot2,
     arrow,
     colorspace,
     data.table,
@@ -26,14 +36,8 @@ Depends:
     rstudioapi,
     scales,
     tictoc,
-    tidyverse
-Imports:
-    dplyr,
-    glue,
-    obt,
-    stringr,
-    tidyr,
-    ggplot2
+    tidyverse,
+    usethis
 Remotes:
     grousell/alchemeR,
     grousell/obt
@@ -41,8 +45,8 @@ Suggests:
     knitr,
     renv,
     rmarkdown,
-    usethis,
     yaml
 VignetteBuilder: knitr
 URL: https://github.com/tcdsb-ra/tcdsb.git
 Config/Needs/website: rmarkdown
+Config/roxygen2/version: 8.0.0
