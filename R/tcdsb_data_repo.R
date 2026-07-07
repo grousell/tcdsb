@@ -53,7 +53,7 @@ tcdsb_connect_data_repo <- function(...) {
       if (!exists("server_url", envir = .GlobalEnv))
         stop("No `Server` supplied and `server_url` not found in global environment.\n",
              configure_info)
-      args$Server <- server_url
+      args$Server <- get("server_url", envir = .GlobalEnv)
     }
   }
 
@@ -63,7 +63,7 @@ tcdsb_connect_data_repo <- function(...) {
       if (!exists("database_name", envir = .GlobalEnv))
         stop("No `Database` supplied and `database_name` not found in global environment.\n",
              configure_info)
-      args$Database <- database_name
+      args$Database <- get("database_name", envir = .GlobalEnv)
     }
   }
 
