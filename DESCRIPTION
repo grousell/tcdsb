@@ -37,6 +37,7 @@ Imports:
     scales,
     tictoc,
     tidyverse,
+    janitor,
     usethis
 Remotes:
     grousell/alchemeR,
