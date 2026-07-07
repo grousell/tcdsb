@@ -11,9 +11,11 @@
 #' are used.
 #'
 #' @param ... Arguments passed directly to \code{DBI::dbConnect(odbc::odbc())}.
-#'   If \code{Server} and \code{Database} are omitted, defaults to
-#'   \code{server_url} and \code{database_name} from the global environment
-#'   (set in \code{.Rprofile} via \code{usethis::edit_r_profile()}).
+#'   If \code{Server} and \code{Database} are omitted, they default to the
+#'   \code{server_url} and \code{database_name} environment variables (set in
+#'   \code{.Renviron} via \code{usethis::edit_r_environ()}), falling back to
+#'   \code{server_url} and \code{database_name} objects in the global environment
+#'   if the environment variables are not set.
 #'   If \code{UID} is omitted, defaults to \code{USERNAME@tcdsb.org}.
 #'   If \code{PWD} is supplied, password auth is used for service accounts; otherwise
 #'   \code{Authentication = "ActiveDirectoryInteractive"}.
@@ -22,37 +24,47 @@
 #'
 #' @examples
 #' \dontrun{
-#' # Use all defaults (requires .Rprofile setup)
+#' # Use all defaults (requires .Renviron setup)
 #' data_repo <- tcdsb_connect_data_repo()
 #'
 #' # Override database only
 #' data_repo <- tcdsb_connect_data_repo(Server = "Otherserver", Database = "OtherDB")
 #'
 #' # Using a service account via keyring package
-#' data_repo <- tcdsb_connect_data_repo(UID = "tcdsb_research_dept",
+#' data_repo <- tcdsb_connect_data_repo(UID = "tcdsb_research_dept_read_data",
 #'            PWD = keyring::key_get("studentanalytics", "tcdsb_research_dept"),
 #'
 #' }
 #' @export
 tcdsb_connect_data_repo <- function(...) {
-
   args <- list(...)
+  configure_info <- "You have probably not set up .Renviron with the connection url yet. \n
+  Add to .Renviron using the command: usethis::edit_r_environ() \n
+  The lines are available in sharepoint under Documentation/R/R_Environment.docx"
+
+  # Order of preference for server url and database:
+  #   1. argument to the function
+  #   2. environment variable (.Renviron)
+  #   3. variable in the global environment.
 
   if (is.null(args$Server)) {
-    if (!exists("server_url", envir = .GlobalEnv) )
-      stop("No `Server` supplied and `server_url` not found in global environment.\n",
-           "Add to .Rprofile (usethis::edit_r_profile()):\n",
-           "  server_url    <- \"data repo server url\"\n",
-           "  database_name <- \"data repo db name\"")
-    args$Server <- server_url
+    args$Server <- Sys.getenv("server_url", unset = NA)
+    if (is.na(args$Server)) {
+      if (!exists("server_url", envir = .GlobalEnv))
+        stop("No `Server` supplied and `server_url` not found in global environment.\n",
+             configure_info)
+      args$Server <- server_url
+    }
   }
 
   if (is.null(args$Database)) {
-    if (!exists("database_name", envir = .GlobalEnv))
-      stop("No `Database` supplied and `database_name` not found in global environment.\n",
-           "Add to .Rprofile (usethis::edit_r_profile()):\n",
-           "  database_name <- \"YourDatabase\"")
-    args$Database <- database_name
+    args$Database <- Sys.getenv("database_name", unset = NA)
+    if (is.na(args$Database)) {
+      if (!exists("database_name", envir = .GlobalEnv))
+        stop("No `Database` supplied and `database_name` not found in global environment.\n",
+             configure_info)
+      args$Database <- database_name
+    }
   }
 
   if (is.null(args$Driver))

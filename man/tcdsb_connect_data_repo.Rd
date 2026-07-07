@@ -8,9 +8,11 @@ tcdsb_connect_data_repo(...)
 }
 \arguments{
 \item{...}{Arguments passed directly to \code{DBI::dbConnect(odbc::odbc())}.
-If \code{Server} and \code{Database} are omitted, defaults to
-\code{server_url} and \code{database_name} from the global environment
-(set in \code{.Rprofile} via \code{usethis::edit_r_profile()}).
+If \code{Server} and \code{Database} are omitted, they default to the
+\code{server_url} and \code{database_name} environment variables (set in
+\code{.Renviron} via \code{usethis::edit_r_environ()}), falling back to
+\code{server_url} and \code{database_name} objects in the global environment
+if the environment variables are not set.
 If \code{UID} is omitted, defaults to \code{USERNAME@tcdsb.org}.
 If \code{PWD} is supplied, password auth is used for service accounts; otherwise
 \code{Authentication = "ActiveDirectoryInteractive"}.}
@@ -32,14 +34,14 @@ are used.
 }
 \examples{
 \dontrun{
-# Use all defaults (requires .Rprofile setup)
+# Use all defaults (requires .Renviron setup)
 data_repo <- tcdsb_connect_data_repo()
 
 # Override database only
 data_repo <- tcdsb_connect_data_repo(Server = "Otherserver", Database = "OtherDB")
 
 # Using a service account via keyring package
-data_repo <- tcdsb_connect_data_repo(UID = "tcdsb_research_dept",
+data_repo <- tcdsb_connect_data_repo(UID = "tcdsb_research_dept_read_data",
            PWD = keyring::key_get("studentanalytics", "tcdsb_research_dept"),
 
 }
