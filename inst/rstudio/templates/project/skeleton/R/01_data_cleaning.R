@@ -3,9 +3,7 @@
 
 source("R/00_setup.R")
 
-#########################
-#      DATA SOURCES     #
-#########################
+## DATA SOURCES ----------------------------------------------------------------
 
 # Uncomment to connect to the Data Repo
 # data_repo <- DBI::dbConnect(
@@ -20,17 +18,13 @@ source("R/00_setup.R")
 
 
 
-#########################
-#         CLEANING      #
-#########################
+
+## BASIC  CLEANING -------------------------------------------------------------
 
 
 
 
-
-#########################
-#      SAVE INTERIM     #
-#########################
+## SAVE INTERIM DATA  ----------------------------------------------------------
 
 # Example:
 # save(table1, variable1, table2, list1, file = "data/intermediate.RData")

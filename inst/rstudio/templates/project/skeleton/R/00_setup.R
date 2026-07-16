@@ -1,17 +1,10 @@
 # Project Dependencies Loading
 # `00_setup.R`
 
-# Each script will want to source this setup script so libraries are available:
+# Each subsequent script should source this setup script with:
 # source("R/00_setup.R")
 
-#########################
-# PACKAGE DEPENDENCIES  #
-#########################
-
-# Ensure pak is available.
-if (!require("pak")) {
-  install.packages("pak")
-}
+## PROJECT DEPENDENCIES --------------------------------------------------------
 
 # Require latest TCDSB package
 # Check once per day and automatically update if a new version is unavailable:
@@ -29,7 +22,7 @@ if (!file.exists(stamp_file) || as.Date(file.info(stamp_file)$mtime) < Sys.Date(
 ## or
 #pak::pkg_deps("grousell/tcdsb")$package
 
-# Load packages required for this project.
+# Load packages required for this project (edit to your needs).
 library(tcdsb)     # https://github.com/grousell/tcdsb
 
 # Data Manipulation
