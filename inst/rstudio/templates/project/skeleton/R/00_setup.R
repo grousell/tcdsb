@@ -15,7 +15,7 @@ if (!require("pak")) {
 
 # Require latest TCDSB package
 # Note: this will automatically update if a new version is unavailable.
-pak::pkg_install("grousell/tcdsb")
+pak::pkg_install("grousell/tcdsb", ask=FALSE)
 
 ## Un-comment to see the list of packages installed via department package:
 #pak::pkg_deps_tree("grousell/tcdsb")
