@@ -30,6 +30,8 @@ Store connection settings in \code{.Renviron} so infrastructure details do
 not appear in project code. This makes future infrastructure changes easier,
 since connection details can be updated centrally without modifying existing
 analysis projects.
+
+See the generic examples of using DBI::dbConnect() below.
 }
 \examples{
 \dontrun{
@@ -40,12 +42,10 @@ usethis::edit_r_environ()
 # Add the lines provided in the file on the department sharepoint/onedrive:
 #   Documentation/R/R_Environment.docx
 
-# Environment variables from this file can then be accessed using:
+# Note that environment variables from this file can then be accessed using:
 Sys.getenv("VARIABLE_NAME")
 
-
 # STANDARD CONNECTION (Laptop / Interactive Use)
-
 data_repo <- DBI::dbConnect(
   odbc::odbc(),
   Server = Sys.getenv("DATA_REPO_URL"),
@@ -64,22 +64,23 @@ data_repo <- DBI::dbConnect(
 # the saved data without repeatedly connecting to the database.
 
 
-# AUTOMATED CONNECTION USING A SERVICE ACCOUNT
+# EXAMPLE 2: AUTOMATED CONNECTION USING A SERVICE ACCOUNT
 
-# Service accounts are used for scheduled refreshes, automated
+# Service accounts are tightly scoped for scheduled refreshes, automated
 # reports, and unattended data pipelines.
 
 for (i in 1:3) { # Try the connection 3 times
 
   data_repo <- tryCatch(
+    srv_act <- "service_account_name"
     DBI::dbConnect(
       odbc::odbc(),
       Server = Sys.getenv("DATA_REPO_URL"),
       Database = Sys.getenv("DATA_REPO_DATABASE"),
-      UID = "tcdsb_research_dept_read_data",
+      UID = srv_act,
       PWD = keyring::key_get(
-        service = "studentanalytics",
-        username = "tcdsb_research_dept_read_data"
+        service = "servicename",
+        username = srv_act
       ),
       Driver = Sys.getenv("DRIVER"),
       Encrypt = "yes"
@@ -96,9 +97,9 @@ for (i in 1:3) { # Try the connection 3 times
 
 if (is.null(data_repo))
   stop("Could not connect after 3 attempts.")
-# Note that the `tryCatch()` may break Rstudio's connection pane.
+# Note that using `tryCatch()` may break Rstudio's connection pane.
 
-# DIFFERENT CONNECTION STRATEGIES BY ENVIRONMENT
+# EXAMPLE 3: DIFFERENT CONNECTION STRATEGIES BY ENVIRONMENT
 # ENVIRONMENT is set in .Renviron
 
 if (Sys.getenv("ENVIRONMENT") == "Laptop") {
@@ -130,8 +131,18 @@ if (Sys.getenv("ENVIRONMENT") == "Laptop") {
 
 }
 
+# Local server using Windows authentication:
+# Change to whatever .Renviron variables are needed.
+local <- DBI::dbConnect(
+  odbc::odbc(),
+  Server = Sys.getenv("LOCAL_URL"),
+  Database = Sys.getenv("LOCAL_DATABASE"),,
+  Driver = Sys.getenv("DRIVER"),
+  Trusted_Connection = "Yes",
+  timeout = 30
+  )
 
-# DATA LOADER / TABLE UPLOAD ACCOUNT
+# EXAMPLE 4: DATA LOADER / TABLE UPLOAD ACCOUNT
 
 # Example of using a data upload-only restricted service account:
 srv_act <- "service_account_name"
@@ -141,16 +152,11 @@ data_repo <- DBI::dbConnect(
   Database = Sys.getenv("DATA_REPO_DATABASE"),
   UID = srv_act,
   PWD = keyring::key_get(
-    service = "studentanalytics",
+    service = "servicename",
     username = srv_act
   ),
   Driver = Sys.getenv("DRIVER"),
   Encrypt = "yes"
-)
-
-DBI::dbGetQuery(
-  data_repo,
-  "drop table if exists test_upload"
 )
 
 DBI::dbWriteTable(
@@ -158,18 +164,8 @@ DBI::dbWriteTable(
   name = DBI::Id(table = "test_upload"),
   value = palmerpenguins::penguins
 )
-# Alternative schema can be specified with schema = "alternative_schema" 
+# Non-default schema can be specified with schema = "alternative_schema" 
 # and use schema.tablename elsewhere.
-
-# The loader account should not be able to read this table.
-# This should return a permission error:
-
-DBI::dbGetQuery(
-  data_repo,
-  "select * from test_upload"
-)
-
-# But it can delete the table
 
 DBI::dbGetQuery(
   data_repo,
