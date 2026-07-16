@@ -14,8 +14,15 @@ if (!require("pak")) {
 }
 
 # Require latest TCDSB package
-# Note: this will automatically update if a new version is unavailable.
-pak::pkg_install("grousell/tcdsb", ask=FALSE)
+# Check once per day and automatically update if a new version is unavailable:
+stamp_file <- file.path(Sys.getenv("LOCALAPPDATA"), "tcdsb_last_update")
+if (!file.exists(stamp_file) || as.Date(file.info(stamp_file)$mtime) < Sys.Date()) {
+  if (!require("pak")) { # Install pak if needed
+    install.packages("pak") 
+  }
+  pak::pkg_install("grousell/tcdsb", ask = FALSE) 
+  file.create(stamp_file) 
+}
 
 ## Un-comment to see the list of packages installed via department package:
 #pak::pkg_deps_tree("grousell/tcdsb")
