@@ -3,25 +3,28 @@
 
 source("R/00_setup.R")
 
-#########################
-#      DATA SOURCES     #
-#########################
+## DATA SOURCES ----------------------------------------------------------------
+
+# Uncomment to connect to the Data Repo
+# data_repo <- DBI::dbConnect(
+#   odbc::odbc(),
+#   Server = Sys.getenv("DATA_REPO_URL"),
+#   Database = Sys.getenv("DATA_REPO_DATABASE"),
+#   Authentication = "ActiveDirectoryInteractive",
+#   UID = paste0(Sys.getenv("USERNAME"), "@tcdsb.org"),
+#   Driver = Sys.getenv("DRIVER"),
+#   Encrypt = "yes"
+# )
 
 
 
 
-
-#########################
-#         CLEANING      #
-#########################
+## BASIC  CLEANING -------------------------------------------------------------
 
 
 
 
-
-#########################
-#      SAVE INTERIM     #
-#########################
+## SAVE INTERIM DATA  ----------------------------------------------------------
 
 # Example:
 # save(table1, variable1, table2, list1, file = "data/intermediate.RData")
