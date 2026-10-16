@@ -73,7 +73,7 @@ Here is a description of the chart. This shows the MPG vs Horsepower from the mt
 library(tidyverse)
 library(tcdsb)
 
-tcdsb_colours_fonts()
+theme <- tcdsb_colours_fonts()
 
 mtcars2 <- mtcars
 mtcars2$am <- factor(
@@ -82,7 +82,7 @@ mtcars2$am <- factor(
 ggplot(mtcars2, aes(hp, mpg, color = am)) +
   geom_point() +
   geom_smooth(formula = y ~ x, method = "loess") +
-  scale_color_manual(values = c(tcdsb_board_color, tcdsb_palette[7])) + 
+  scale_color_manual(values = c(theme$tcdsb_board_color, theme$tcdsb_palette[7])) + 
   tcdsb_ggplot_theme() + 
   theme(legend.position = 'bottom',
         text = element_text(family = "Century Gothic"))
@@ -114,7 +114,7 @@ mtcars2 |>
        y = "Count") + 
   scale_y_continuous(breaks = c(5, 10, 15), 
                      limits = c(0,15)) + 
-  scale_fill_manual(values = c(tcdsb_board_color, tcdsb_palette[7])) + 
+  scale_fill_manual(values = c(theme$tcdsb_board_color, theme$tcdsb_palette[7])) + 
   tcdsb_ggplot_theme() + 
   theme(legend.position = 'bottom', 
         text = element_text(family = "Century Gothic"))
@@ -138,7 +138,7 @@ gtcars |>
   gt() |>
   tab_options(# Settings for entire table
     table.font.size = 12,
-    heading.background.color = tcdsb_board_color) |>
+    heading.background.color = theme$tcdsb_board_color) |>
   tab_header(
       title = "Regular Table",
       subtitle = "Subtitle"
@@ -170,7 +170,7 @@ gtcars |>
   gt() |>
   tab_options(# Settings for entire table
     table.font.size = 11,
-    heading.background.color = tcdsb_board_color) |>
+    heading.background.color = theme$tcdsb_board_color) |>
   tab_header(
       title = "Grouped Table",
       subtitle = "Subtitle"
