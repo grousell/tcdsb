@@ -1,10 +1,11 @@
 ---
-title: "TITLE"
-subtitle: "Subtitle"
+title: "TITLE GOES HERE" # keep all caps
+subtitle: "Subtitle goes here"
 date: today # Must be YYYY-MM-DD 
-author: "Author"
-dept: "Research or Analytics Report" #  Choose one
-fig-width: 7
+author: ""
+season: "FALL 2026"
+dept: "RESEARCH or ANALYTICS REPORT" #  Choose one, keep all caps
+fig-width: 8
 fig-height: 4
 format: 
   typst:
@@ -26,19 +27,10 @@ shortcodes:
 keep-typ: true
 execute:
   echo: false
+  warning: false
 params:
   param1: Parameter 1
 ---
-
-```{=typst}
-#set page(
-  header: align(right)[
-    {{< meta title >}}
-  ],
-)
-
-```
-
 
 # Introduction
 
