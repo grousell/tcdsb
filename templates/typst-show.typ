@@ -14,6 +14,9 @@ $endif$
 $if(author)$
   author: "$author$",
 $endif$
+$if(season)$
+  season: [$season$],
+$endif$
 $if(lang)$
   lang: "$lang$",
 $endif$

@@ -45,7 +45,7 @@ tcdsb_report_template_quarto <- function(report_name){
 
 
   # Download TCDSB images ----
-  download.file("https://github.com/grousell/tcdsb/blob/master/images/title_page_background.png?raw=true",
+  download.file("https://github.com/grousell/tcdsb/blob/master/images/mysp_three_lines.png?raw=true",
                 destfile = "assets/title_page_background.png",
                 mode = "wb")
 
