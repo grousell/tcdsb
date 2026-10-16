@@ -1,46 +1,40 @@
 # Project Dependencies Loading
 # `00_setup.R`
 
+# Each subsequent script should source this setup script with:
+# source("R/00_setup.R")
 
-#########################
-# PACKAGE DEPENDENCIES  #
-#########################
-
-# Ensure Require package is available.
-if (!require("Require")) {
-  install.packages("Require")
-}
+## PROJECT DEPENDENCIES --------------------------------------------------------
 
 # Require latest TCDSB package
-# Note: this will automatically update if a new
-#       version is available.
-Require::Require("grousell/tcdsb@development (HEAD)")
+# Check once per day and automatically update if a new version is unavailable:
+stamp_file <- file.path(Sys.getenv("LOCALAPPDATA"), "tcdsb_last_update")
+if (!file.exists(stamp_file) || as.Date(file.info(stamp_file)$mtime) < Sys.Date()) {
+  if (!require("pak")) { # Install pak if needed
+    install.packages("pak") 
+  }
+  pak::pkg_install("grousell/tcdsb", ask = FALSE) 
+  file.create(stamp_file) 
+}
 
-# Define all packages required for this project.
-# Note: alternatively, use Require::Install() to ensure
-#       a package is available using the
-#       `packagename::function()` syntax.
-Require::Require(
-                 c("dplyr",
-                   "dbplyr",
-                   "tidyr",
-                   "stringr",
-                   "glue",
-                   "ggplot2",
-                   "gt",
-                   "usethis"
-                   )
-                 )
-# Customize the above example as needed.
+## Un-comment to see the list of packages installed via department package:
+#pak::pkg_deps_tree("grousell/tcdsb")
+## or
+#pak::pkg_deps("grousell/tcdsb")$package
 
+# Load packages required for this project (edit to your needs).
+library(tcdsb)     # https://github.com/grousell/tcdsb
 
+# Data Manipulation
+library(dplyr)     # https://dplyr.tidyverse.org/
+library(dbplyr)    # https://dbplyr.tidyverse.org/
+library(tidyr)     # https://tidyr.tidyverse.org/
+library(stringr)   # https://stringr.tidyverse.org/
+library(glue)      # https://glue.tidyverse.org/
 
-#########################
-#      DATA SOURCES     #
-#########################
-
-# Add raw data sources
-
+# Visualization
+library(ggplot2)   # https://ggplot2.tidyverse.org/articles/ggplot2.html
+library(gt)        # https://gt.rstudio.com/articles/gt.html
 
 
 
@@ -48,4 +42,4 @@ Require::Require(
 #  OTHER REQUIREMENTS   #
 #########################
 
-# Add any other project requirements
+# Add any other project requirements that should be run before any other script.

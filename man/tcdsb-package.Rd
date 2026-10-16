@@ -18,5 +18,11 @@ Useful links:
 \author{
 \strong{Maintainer}: Rousell Greg \email{grousell@gmail.com}
 
+Authors:
+\itemize{
+  \item Rousell Greg \email{grousell@gmail.com}
+  \item Locklin Jason \email{jason_locklin@tcdsb.org} [contributor]
+}
+
 }
 \keyword{internal}
