@@ -45,15 +45,15 @@ tcdsb_report_template_quarto <- function(report_name){
 
 
   # Download TCDSB images ----
-  download.file("https://github.com/grousell/tcdsb/blob/master/images/mysp_three_lines.png?raw=true",
-                destfile = "assets/title_page_background.png",
+  download.file("https://github.com/grousell/tcdsb/blob/master/assets/mysp_three_lines.png?raw=true",
+                destfile = "assets/mysp_three_lines.png",
                 mode = "wb")
 
-  download.file("https://github.com/grousell/tcdsb/blob/master/images/tcdsb_logo_maroon.png?raw=true",
+  download.file("https://github.com/grousell/tcdsb/blob/master/assets/tcdsb_logo_maroon.png?raw=true",
                 destfile = "assets/tcdsb_logo_maroon.png",
                 mode = "wb")
 
-  download.file("https://github.com/grousell/tcdsb/blob/master/images/r_a_logo.png?raw=true",
+  download.file("https://github.com/grousell/tcdsb/blob/master/assets/r_a_logo.png?raw=true",
                 destfile = "assets/r_a_logo.png",
                 mode = "wb")
 
