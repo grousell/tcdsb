@@ -32,23 +32,23 @@ tcdsb_report_template_pdf <- function(report_name){
 
   # Download TCDSB images ----
 
-  download.file("https://github.com/grousell/tcdsb/blob/master/images/r_a_footer.png?raw=true",
+  download.file("https://github.com/grousell/tcdsb/blob/master/assets/r_a_footer.png?raw=true",
                 destfile = "assets/r_a_footer.png",
                 mode = "wb")
 
-  download.file("https://github.com/grousell/tcdsb/blob/master/images/r_a_logo.png?raw=true",
+  download.file("https://github.com/grousell/tcdsb/blob/master/assets/r_a_logo.png?raw=true",
                 destfile = "assets/r_a_logo.png",
                 mode = "wb")
 
-  download.file("https://github.com/grousell/tcdsb/blob/master/images/tcdsb_logo.png?raw=true",
+  download.file("https://github.com/grousell/tcdsb/blob/master/assets/tcdsb_logo.png?raw=true",
                 destfile = "assets/tcdsb_logo.png",
                 mode = "wb")
 
-  download.file("https://github.com/grousell/tcdsb/blob/master/images/tcdsb_logo_BW.png?raw=true",
+  download.file("https://github.com/grousell/tcdsb/blob/master/assets/tcdsb_logo_BW.png?raw=true",
                 destfile = "assets/tcdsb_logo_BW.png",
                 mode = "wb")
 
-  download.file("https://github.com/grousell/tcdsb/blob/master/images/title_page_background.png?raw=true",
+  download.file("https://github.com/grousell/tcdsb/blob/master/assets/title_page_background.png?raw=true",
                 destfile = "assets/title_page_background.png",
                 mode = "wb")
   }

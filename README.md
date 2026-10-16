@@ -18,8 +18,8 @@ You can install the development version of `tcdsb` from
 [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("grousell/tcdsb")
+# install.packages("pak")
+pak::pkg_install("grousell/tcdsb")
 ```
 
 ## Plot Example
