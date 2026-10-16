@@ -96,7 +96,7 @@
   #place(
     bottom + left,
     dx: 0in,
-    dy: -0.5in,
+    dy: -0.6in,
     )[
     #text(size: 14pt, fill: tcdsb_colors.board_maroon,)[#dept]
     ]
@@ -104,7 +104,15 @@
   #place(
     bottom + left,
     dx: 0in,
-    dy: -0.25in,
+    dy: -0.4in,
+    )[
+    #text(size: 14pt, fill: tcdsb_colors.board_maroon,)[#author]
+    ]
+
+  #place(
+    bottom + left,
+    dx: 0in,
+    dy: -0.2in,
     )[
     #text(size: 14pt)[#date]
     ]
